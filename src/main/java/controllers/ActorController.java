@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Actor;
-import domain.Customer;
 import forms.ActorForm;
 import security.Authority;
 import services.ActorService;
-import services.CustomerService;
 
 @Controller
 @RequestMapping("/actor")
@@ -28,8 +26,6 @@ public class ActorController extends AbstractController {
 	@Autowired
 	private ActorService actorService;
 
-	@Autowired
-	private CustomerService customerService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -52,27 +48,45 @@ public class ActorController extends AbstractController {
 	}
 
 	// Display user -----------------------------------------------------------
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam final int actorId) {
-		ModelAndView result;
+		@RequestMapping(value = "/display", method = RequestMethod.GET)
+		public ModelAndView display(@RequestParam final int actorId) {
+			ModelAndView result;
 
-		final Actor actor;
-		try {
-			final Actor logedActor = this.actorService.findByPrincipal();
-			Assert.notNull(logedActor, "msg.not.loged.block");
-		} catch (Throwable oops) {
-			if (oops.getMessage().startsWith("msg.")) {
-				return createMessageModelAndView(oops.getLocalizedMessage(), "/");
-			} else {
-				return this.createMessageModelAndView("panic.message.text", "/");
-			}
-		}		
-		actor = this.actorService.findOne(actorId);
-		result = new ModelAndView("actor/display");
-		result.addObject("actorForm", actor);
-		result.addObject("display", true);
-		return result;
-	}
+			final Actor actor;
+			try {
+				final Actor logedActor = this.actorService.findByPrincipal();
+				Assert.notNull(logedActor, "msg.not.loged.block");
+			} catch (Throwable oops) {
+				if (oops.getMessage().startsWith("msg.")) {
+					return createMessageModelAndView(oops.getLocalizedMessage(), "/");
+				} else {
+					return this.createMessageModelAndView("panic.message.text", "/");
+				}
+			}		
+			actor = this.actorService.findOne(actorId);
+			result = new ModelAndView("actor/display");
+			result.addObject("actorForm", actor);
+			result.addObject("display", true);
+			return result;
+		}
+		// Activation  -----------------------------------------------------------
+		@RequestMapping(value = "/activate", method = RequestMethod.GET)
+		public ModelAndView activation(@RequestParam final int actorId) {
+			ModelAndView result;
+
+			try{
+				this.actorService.activation(actorId);
+				
+			} catch (Throwable oops) {
+				if (oops.getMessage().startsWith("msg.")) {
+					return createMessageModelAndView(oops.getLocalizedMessage(), "/");
+				} else {
+					return this.createMessageModelAndView("panic.message.text", "/");
+				}
+			}		
+			result = new ModelAndView("redirect:/actor/list.do");
+			return result;
+		}
 
 	private ModelAndView checkLoged() {
 		ModelAndView result = null;
@@ -171,16 +185,16 @@ public class ActorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final ActorForm model, final String message) {
 		final ModelAndView result;
 		final Collection<Authority> permisos = Authority.listAuthorities();
-		final Collection<Customer> customers = customerService.findAll();
-		final Authority authority = new Authority();
-		authority.setAuthority(Authority.ADMINISTRATOR);
-		permisos.remove(authority);
-
+		/*
+			final Authority authority = new Authority();
+			authority.setAuthority(Authority.ADMINISTRATOR);
+			permisos.remove(authority);
+		 */
+		
 		result = new ModelAndView("actor/create");
 		result.addObject("actorForm", model);
 		result.addObject("requestUri", "actor/create.do");
 		result.addObject("permisos", permisos);
-		result.addObject("customers", customers);
 		result.addObject("edition", true);
 		result.addObject("creation", model.getId() == 0);
 		result.addObject("message", message);

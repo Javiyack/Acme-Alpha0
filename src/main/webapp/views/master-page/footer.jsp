@@ -14,7 +14,7 @@
 <jsp:useBean id="date" class="java.util.Date" />
 
 <div class="toRight">
-<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme-CRM Co., Inc.</b>
+<b>Copyright &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> Acme-Alpha0 Co., Inc.</b>
 <a href="term/termsAndConditions.do"><spring:message code="term.terms"/></a>
 <a href="term/cookies.do"><spring:message code="term.cookie"/></a>
 </div>

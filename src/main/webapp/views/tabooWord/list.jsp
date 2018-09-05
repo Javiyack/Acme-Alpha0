@@ -23,19 +23,23 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<display:table pagesize="5" class="displaytag" name="tabooWords" requestURI="tabooWord/administrator/list.do" id="row">
+<spring:message code="msg.delete.confirmation" var="deleteConfirmation" />
+<ul class="w3-ul w3-card-4 w3-light-grey">
 
-	<acme:column property="text" title="tabooWord.text" sortable="true"/>
+	<jstl:forEach items="${tabooWords}" var="row">
+		<jstl:set var="deleteUrl"
+			value="tabooWord/administrator/delete.do?tabooWordId=${row.id}" />
+		<li class="w3-display-container"><jstl:out value="${row.text}" />
+			<a href="tabooWord/administrator/edit.do?tabooWordId=${row.id}"
+			class="w3-button w3-transparent w3-display-middle"> <spring:message
+					code="label.edit" />
+		</a> <span
+			onclick="javascript: showConfirmationAlert('${deleteConfirmation}', '${row.text}', '${deleteUrl}');"
+			class="w3-button w3-transparent w3-display-right"> &times; </span></li>
+	</jstl:forEach>
+</ul>
 
-	<display:column >
-		<div>
-			<a href="tabooWord/administrator/edit.do?tabooWordId=${row.id}">
-				<spring:message code="master.page.edit" />
-			</a>
-		</div>
-	</display:column>
-
-</display:table>
 <br />
-<acme:button url="tabooWord/administrator/create.do" text="tabooWord.create" css="formButton toLeft"/>
+<acme:button url="tabooWord/administrator/create.do"
+	text="tabooWord.create" css="formButton toLeft" />
 

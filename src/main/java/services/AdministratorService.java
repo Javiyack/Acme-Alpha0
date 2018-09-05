@@ -86,7 +86,7 @@ public class AdministratorService {
 		else {
 
 			Collection<TabooWord> tabooWords;
-			tabooWords = this.tabooWordService.getTabooWordFromMessageSubjectAndBody(subject, body);
+			tabooWords = this.tabooWordService.getTabooWordFromMyMessageSubjectAndBody(subject, body);
 
 			if (tabooWords.isEmpty())
 				isSpam = false;

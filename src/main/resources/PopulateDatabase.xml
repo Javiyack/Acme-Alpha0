@@ -72,208 +72,30 @@
 	</bean>
 
 
-	<!-- Manager accounts -->
+	<!-- Others accounts -->
 
-	<bean id="userAccountManager1" class="security.UserAccount">
-		<property name="username" value="manager1" />
-		<property name="password"
-			value="c240642ddef994358c96da82c0361a58" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="MANAGER" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="userAccountManager2" class="security.UserAccount">
-		<property name="username" value="manager2" />
-		<property name="password"
-			value="8df5127cd164b5bc2d2b78410a7eea0c" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="MANAGER" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<!-- Responsable accounts -->
-
-	<bean id="userAccountResponsable1" class="security.UserAccount">
-		<property name="username" value="responsable1" />
-		<property name="password"
-			value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="RESPONSABLE" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="userAccountResponsable2" class="security.UserAccount">
-		<property name="username" value="responsable2" />
-		<property name="password"
-			value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="RESPONSABLE" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="userAccountResponsable3" class="security.UserAccount">
-		<property name="username" value="responsable3" />
-		<property name="password"
-			value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="RESPONSABLE" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<!-- Technician accounts -->
-
-	<bean id="userAccountTechnician1" class="security.UserAccount">
-		<property name="username" value="technician1" />
-		<property name="password"
-			value="c240642ddef994358c96da82c0361a58" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="TECHNICIAN" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="userAccountTechnician2" class="security.UserAccount">
-		<property name="username" value="technician2" />
-		<property name="password"
-			value="8df5127cd164b5bc2d2b78410a7eea0c" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="TECHNICIAN" />
-				</bean>
-			</list>
-		</property>
-		<property name="active" value="true" />
-	</bean>
-
-
-	<!-- Managers -->
-
-	<bean id="manager1" class="domain.Manager">
-		<property name="name" value="Juana" />
-		<property name="surname" value="García" />
-		<property name="email" value="juana@gmail.com" />
-		<property name="phone" value="675646446" />
-		<property name="address" value="C/ Lago 98" />
-		<property name="userAccount" ref="userAccountManager1" />
-		<property name="customer" ref="customer1" />
-	</bean>
-
-	<bean id="manager2" class="domain.Manager">
-		<property name="name" value="Jose María" />
-		<property name="surname" value="Bermúdez" />
-		<property name="email" value="jmb@gmail.com" />
-		<property name="phone" value="657463525" />
-		<property name="address" value="C/ Reina Mercedes 34" />
-		<property name="userAccount" ref="userAccountManager2" />
-		<property name="customer" ref="customer1" />
-	</bean>
-
-
-	<!-- Technician -->
-
-	<bean id="technician1" class="domain.Technician">
-		<property name="name" value="Juana" />
-		<property name="surname" value="García" />
-		<property name="email" value="juana@gmail.com" />
-		<property name="phone" value="675646446" />
-		<property name="address" value="C/ Lago 98" />
-		<property name="userAccount" ref="userAccountTechnician1" />
-		<property name="customer" ref="customer1" />
-	</bean>
-
-	<bean id="technician2" class="domain.Technician">
-		<property name="name" value="Jose María" />
-		<property name="surname" value="Bermúdez" />
-		<property name="email" value="jmb@gmail.com" />
-		<property name="phone" value="657463525" />
-		<property name="address" value="C/ Reina Mercedes 34" />
-		<property name="userAccount" ref="userAccountTechnician2" />
-		<property name="customer" ref="customer1" />
-	</bean>
-
-
-	<!-- Administrators -->
+	<!-- Administrators Actors -->
+	
 	<bean id="administrator1" class="domain.Administrator">
 		<property name="name" value="Javier" />
 		<property name="surname" value="Llach" />
 		<property name="email" value="javillach@gmail.com" />
 		<property name="phone" value="658357522" />
+		<property name="registrationMoment" value="2018/09/01 10:25" />
 		<property name="address" value="C/ Amargura 55" />
 		<property name="userAccount" ref="userAccountAdmin" />
-		<property name="customer" ref="customer1" />
 	</bean>
 
-	<!-- Responsables -->
-
-	<bean id="responsable1" class="domain.Responsable">
-		<property name="name" value="Nombre Responsable 1" />
-		<property name="surname" value="Apellidos usuario 1" />
-		<property name="email" value="usuario1@gmail.com" />
-		<property name="phone" value="666999666" />
-		<property name="address" value="C/ Calvario 66" />
-		<property name="userAccount" ref="userAccountResponsable1" />
-		<property name="customer" ref="customer2" />
-	</bean>
-	<bean id="responsable2" class="domain.Responsable">
-		<property name="name" value="Nombre Responsable 2" />
-		<property name="surname" value="Apellidos usuario 1" />
-		<property name="email" value="usuario1@gmail.com" />
-		<property name="phone" value="666999666" />
-		<property name="address" value="C/ Calvario 66" />
-		<property name="userAccount" ref="userAccountResponsable2" />
-		<property name="customer" ref="customer2" />
-	</bean>
-	<bean id="responsable3" class="domain.Responsable">
-		<property name="name" value="Antonio" />
-		<property name="surname" value="Mochuelo" />
-		<property name="email" value="mochuelo@ecotono.org" />
-		<property name="phone" value="637125904" />
-		<property name="address" value="Av/ Andalucia nº 51" />
-		<property name="userAccount" ref="userAccountResponsable3" />
-		<property name="customer" ref="customer3" />
-	</bean>
-
-	<!-- Users -->
+	<!-- Users Actors-->
 
 	<bean id="user1" class="domain.User">
 		<property name="name" value="Nombre usuario 1" />
 		<property name="surname" value="Apellidos usuario 1" />
 		<property name="email" value="usuario1@gmail.com" />
 		<property name="phone" value="666999666" />
+		<property name="registrationMoment" value="2018/09/01 10:25" />
 		<property name="address" value="C/ Calvario 66" />
 		<property name="userAccount" ref="userAccountUser1" />
-		<property name="customer" ref="customer2" />
 	</bean>
 
 	<bean id="user2" class="domain.User">
@@ -281,234 +103,28 @@
 		<property name="surname" value="Apellidos usuario 2" />
 		<property name="email" value="usuario2@gmail.com" />
 		<property name="phone" value="618399522" />
+		<property name="registrationMoment" value="2018/09/01 10:25" />
 		<property name="address" value="C/ Suplicio 77" />
 		<property name="userAccount" ref="userAccountUser2" />
-		<property name="customer" ref="customer2" />
 	</bean>
+	
 	<bean id="user3" class="domain.User">
 		<property name="name" value="Javi" />
 		<property name="surname" value="Chiquichancla" />
 		<property name="email" value="chiquichancla@ecotono.org" />
 		<property name="phone" value="618399522" />
+		<property name="registrationMoment" value="2018/09/01 10:25" />
 		<property name="address" value="C/ Suplicio 77" />
 		<property name="userAccount" ref="userAccountUser3" />
-		<property name="customer" ref="customer3" />
 	</bean>
 
+	
+	
 
-	<!-- Customers -->
-
-	<bean id="customer1" class="domain.Customer">
-		<property name="name" value="Acme-CRM" />
-		<property name="description"
-			value="Sistemas y Gestión informática" />
-		<property name="webSite" value="www.acme-crm.es" />
-		<property name="email" value="sginfo@sginfo.es" />
-		<property name="fechaAlta" value="19/08/2018 14:10" />
-		<property name="passKey" value="CUS-010100-00000001" />
-		<property name="address" value="C/ Estancos 30" />
-		<property name="billingAddress" value="C/ Estancos 30" />
-		<property name="nif" value="28614080X" />
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="customer2" class="domain.Customer">
-		<property name="name" value="Ka Sevilla" />
-		<property name="description"
-			value="Franquicias de KA Internacional en Sevilla" />
-		<property name="webSite" value="www.kasevilla.es" />
-		<property name="email" value="kasevilla@kasevilla.es" />
-		<property name="fechaAlta" value="19/08/2018 18:10" />
-		<property name="passKey" value="CUS-190818-16986414" />
-		<property name="address" value="C/ Angustia 99" />
-		<property name="billingAddress" value="C/ Angustia 99" />
-		<property name="nif" value="G41623679" />
-		<property name="active" value="true" />
-	</bean>
-
-	<bean id="customer3" class="domain.Customer">
-		<property name="name" value="ECOTONO" />
-		<property name="description"
-			value="Cooperativa medioambiental" />
-		<property name="webSite" value="www.ecotono.org" />
-		<property name="email" value="contant@ecotono.org" />
-		<property name="fechaAlta" value="13/04/2017 10:30" />
-		<property name="passKey" value="CUS-130417-16986414" />
-		<property name="address" value="C/ San Jose Obrero s/n" />
-		<property name="billingAddress"
-			value="C/ San Jose Obrero s/n" />
-		<property name="nif" value="A22623679" />
-		<property name="active" value="true" />
-	</bean>
-
+	<!-- Others Actors -->
+	
 	<!-- Incidences -->
-	<bean id="incidence1" class="domain.Incidence">
-		<property name="title" value="Incidencia 1" />
-		<property name="description" value="No enciende el PC" />
-		<property name="ticker" value="INC-190818-06986414" />
-		<property name="publicationDate" value="2018/04/15 12:00" />
-		<property name="startingDate" value="2018/04/16 20:45" />
-		<property name="endingDate" value="2018/04/17 12:00" />
-		<property name="user" ref="user1" />
-		<property name="technician" ref="technician1" />
-		<property name="cancelled" value="false" />
-	</bean>
 
-	<bean id="incidence2" class="domain.Incidence">
-		<property name="title" value="Incidencia 2" />
-		<property name="description" value="No enciende el PC" />
-		<property name="ticker" value="INC-190818-46986414" />
-		<property name="publicationDate" value="2018/06/15 10:00" />
-		<property name="startingDate" value="2018/06/15 11:15" />
-		<property name="endingDate" value="2018/06/15 15:30" />
-		<property name="user" ref="user2" />
-		<property name="technician" ref="technician2" />
-		<property name="cancelled" value="false" />
-	</bean>
-
-	<bean id="incidence3" class="domain.Incidence">
-		<property name="title" value="Incidencia 3" />
-		<property name="description" value="No enciende el PC" />
-		<property name="ticker" value="INC-190718-06986475" />
-		<property name="publicationDate" value="2018/04/15 12:00" />
-		<property name="startingDate" value="2018/04/16 20:45" />
-		<property name="endingDate" value="2018/04/17 12:00" />
-		<property name="user" ref="user1" />
-		<property name="technician" ref="technician1" />
-		<property name="cancelled" value="false" />
-	</bean>
-
-	<bean id="incidence4" class="domain.Incidence">
-		<property name="title" value="Incidencia 4" />
-		<property name="description" value="No enciende el PC" />
-		<property name="ticker" value="INC-190718-46986401" />
-		<property name="publicationDate" value="2018/07/22 11:00" />
-		<property name="startingDate" value="2018/07/23 09:15" />
-		<property name="endingDate" value="2018/07/23 19:33" />
-		<property name="user" ref="user2" />
-		<property name="technician" ref="technician2" />
-		<property name="cancelled" value="false" />
-	</bean>
-
-	<!-- Labors -->
-	<bean id="labor1" class="domain.Labor">
-		<property name="title" value="Cambio FA" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:25" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence1" />
-	</bean>
-
-	<bean id="labor2" class="domain.Labor">
-		<property name="title" value="Test Rendimiento" />
-		<property name="description" value="Lustre" />
-		<property name="time" value="1972/01/01 00:40" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence1" />
-	</bean>
-
-	<bean id="labor3" class="domain.Labor">
-		<property name="title" value="Formateo" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:50" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence1" />
-	</bean>
-
-	<bean id="labor4" class="domain.Labor">
-		<property name="title" value="Instalacion SO" />
-		<property name="description" value="" />
-		<property name="time" value="2018/04/15 00:50" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence1" />
-	</bean>
-
-	<bean id="labor5" class="domain.Labor">
-		<property name="title" value="Diagnostico" />
-		<property name="description" value="Disco duro defectuoso" />
-		<property name="time" value="1972/01/01 01:15" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence2" />
-	</bean>
-
-	<bean id="labor6" class="domain.Labor">
-		<property name="title" value="Cambio HDD" />
-		<property name="description" value="Se instala nuevo SSD" />
-		<property name="time" value="1972/01/01 00:30" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence2" />
-	</bean>
-
-	<bean id="labor7" class="domain.Labor">
-		<property name="title" value="Reinstalacion SO" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:45" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence2" />
-	</bean>
-
-	<bean id="labor8" class="domain.Labor">
-		<property name="title" value="Migracion Datos" />
-		<property name="description"
-			value="Se recupera todos los datos necesarios del antiguo HDD" />
-		<property name="time" value="2018/04/15 01:50" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence2" />
-	</bean>
-
-	<bean id="labor9" class="domain.Labor">
-		<property name="title" value="Reinstalacion SO" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:45" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence3" />
-	</bean>
-	<bean id="labor10" class="domain.Labor">
-		<property name="title" value="Reinstalacion SO" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:45" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence3" />
-	</bean>
-
-	<bean id="labor11" class="domain.Labor">
-		<property name="title" value="Migracion Datos" />
-		<property name="description"
-			value="Se recupera todos los datos necesarios del antiguo HDD" />
-		<property name="time" value="2018/04/15 01:50" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence4" />
-	</bean>
-	<bean id="labor12" class="domain.Labor">
-		<property name="title" value="Migracion Datos" />
-		<property name="description"
-			value="Se recupera todos los datos necesarios del antiguo HDD" />
-		<property name="time" value="2018/04/15 01:50" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence4" />
-	</bean>
-
-	<bean id="labor13" class="domain.Labor">
-		<property name="title" value="Pruebas" />
-		<property name="description" value="" />
-		<property name="time" value="1972/01/01 00:30" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence4" />
-	</bean>
-
-	<bean id="labor14" class="domain.Labor">
-		<property name="title" value="Drivers" />
-		<property name="description"
-			value="Se recupera todos los datos necesarios del antiguo HDD" />
-		<property name="time" value="2018/04/15 00:40" />
-		<property name="moment" value="2018/04/15 20:45" />
-		<property name="incidence" ref="incidence4" />
-	</bean>
-	<!-- Categories -->
-
-
-	<!-- Servants -->
-	<!-- Folders -->
 	<!-- user1 folders -->
 	<bean id="inbox1" class="domain.Folder">
 		<property name="name" value="inbox" />
@@ -585,234 +201,44 @@
 		<property name="actor" ref="user2" />
 	</bean>
 
-	<!-- technician1 folders -->
-	<bean id="inbox3" class="domain.Folder">
+	
+	<!-- user3 folders -->
+	<bean id="inbox11" class="domain.Folder">
 		<property name="name" value="inbox" />
 		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician1" />
+		<property name="actor" ref="user3" />
 	</bean>
 
-	<bean id="outbox3" class="domain.Folder">
+	<bean id="outbox11" class="domain.Folder">
 		<property name="name" value="outbox" />
 		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician1" />
+		<property name="actor" ref="user3" />
 	</bean>
 
-	<bean id="notificationbox3" class="domain.Folder">
+	<bean id="notificationbox11" class="domain.Folder">
 		<property name="name" value="notificationbox" />
 		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician1" />
+		<property name="actor" ref="user3" />
 	</bean>
 
-	<bean id="spambox3" class="domain.Folder">
+	<bean id="spambox11" class="domain.Folder">
 		<property name="name" value="spambox" />
 		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician1" />
+		<property name="actor" ref="user3" />
 	</bean>
 
-	<bean id="trashbox3" class="domain.Folder">
+	<bean id="trashbox11" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician1" />
+		<property name="actor" ref="user3" />
 	</bean>
 
-	<bean id="custombox3" class="domain.Folder">
+	<bean id="custombox11" class="domain.Folder">
 		<property name="name" value="work" />
 		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox3" />
-		<property name="actor" ref="technician1" />
+		<property name="parent" ref="inbox11" />
+		<property name="actor" ref="user3" />
 	</bean>
-
-	<!-- technician2 folders -->
-	<bean id="inbox4" class="domain.Folder">
-		<property name="name" value="inbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<bean id="outbox4" class="domain.Folder">
-		<property name="name" value="outbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<bean id="notificationbox4" class="domain.Folder">
-		<property name="name" value="notificationbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<bean id="spambox4" class="domain.Folder">
-		<property name="name" value="spambox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<bean id="trashbox4" class="domain.Folder">
-		<property name="name" value="trashbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<bean id="custombox4" class="domain.Folder">
-		<property name="name" value="work" />
-		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox4" />
-		<property name="actor" ref="technician2" />
-	</bean>
-
-	<!-- manager1 folders -->
-	<bean id="inbox5" class="domain.Folder">
-		<property name="name" value="inbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<bean id="outbox5" class="domain.Folder">
-		<property name="name" value="outbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<bean id="notificationbox5" class="domain.Folder">
-		<property name="name" value="notificationbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<bean id="spambox5" class="domain.Folder">
-		<property name="name" value="spambox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<bean id="trashbox5" class="domain.Folder">
-		<property name="name" value="trashbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<bean id="custombox5" class="domain.Folder">
-		<property name="name" value="work" />
-		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox5" />
-		<property name="actor" ref="manager1" />
-	</bean>
-
-	<!-- manager2 folders -->
-	<bean id="inbox6" class="domain.Folder">
-		<property name="name" value="inbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<bean id="outbox6" class="domain.Folder">
-		<property name="name" value="outbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<bean id="notificationbox6" class="domain.Folder">
-		<property name="name" value="notificationbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<bean id="spambox6" class="domain.Folder">
-		<property name="name" value="spambox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<bean id="trashbox6" class="domain.Folder">
-		<property name="name" value="trashbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<bean id="custombox6" class="domain.Folder">
-		<property name="name" value="work" />
-		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox6" />
-		<property name="actor" ref="manager2" />
-	</bean>
-
-	<!-- responsable1 folders -->
-	<bean id="inbox7" class="domain.Folder">
-		<property name="name" value="inbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<bean id="outbox7" class="domain.Folder">
-		<property name="name" value="outbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<bean id="notificationbox7" class="domain.Folder">
-		<property name="name" value="notificationbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<bean id="spambox7" class="domain.Folder">
-		<property name="name" value="spambox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<bean id="trashbox7" class="domain.Folder">
-		<property name="name" value="trashbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<bean id="custombox7" class="domain.Folder">
-		<property name="name" value="work" />
-		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox7" />
-		<property name="actor" ref="responsable1" />
-	</bean>
-
-	<!-- responsable2 folders -->
-	<bean id="inbox8" class="domain.Folder">
-		<property name="name" value="inbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
-	<bean id="outbox8" class="domain.Folder">
-		<property name="name" value="outbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
-	<bean id="notificationbox8" class="domain.Folder">
-		<property name="name" value="notificationbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
-	<bean id="spambox8" class="domain.Folder">
-		<property name="name" value="spambox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
-	<bean id="trashbox8" class="domain.Folder">
-		<property name="name" value="trashbox" />
-		<property name="systemFolder" value="true" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
-	<bean id="custombox8" class="domain.Folder">
-		<property name="name" value="work" />
-		<property name="systemFolder" value="false" />
-		<property name="parent" ref="inbox8" />
-		<property name="actor" ref="responsable2" />
-	</bean>
-
 	<!-- admin folders -->
 	<bean id="inbox9" class="domain.Folder">
 		<property name="name" value="inbox" />
@@ -879,11 +305,12 @@
 		<property name="companyName" value="Acme CRM" />
 		<property name="passKey" value="CUS-010100-00000001" />
 		<property name="logo" value="images/logo.png" />
+		<property name="defaultCurrency" value="EUR" />
 		<property name="welcomeMessageEs"
 			value="Pruebalo!" />
 		<property name="welcomeMessageEn"
 			value="Check it out!" />
-		<property name="iva" value="0.21" />
+		<property name="iva" value="21" />
 		<property name="hourPrice" value="28" />
 		<property name="folderNames">
 			<list>

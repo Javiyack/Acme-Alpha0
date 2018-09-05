@@ -12,8 +12,4 @@ import domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	@Query("select u from User u where u.customer.id = ?1")	
-	Collection<User> findAllByCustomerId(int customerId);
-
-	
 }

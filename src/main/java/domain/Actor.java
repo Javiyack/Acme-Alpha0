@@ -1,21 +1,21 @@
 
 package domain;
 
-import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import security.UserAccount;
 
@@ -28,23 +28,12 @@ public abstract class Actor extends DomainEntity {
 	private String 		surname;
 	private String 		email;
 	private String 		phone; 			// Optional
-	private String 		address; 		// Optional
-	private Customer	customer; 		
-
+	private String 		address; 		// Optional	
+	private Date 		registrationMoment;
 	//Relationships
 	private UserAccount userAccount;
-
-	@ManyToOne(optional = true)
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
 	
 	
-	@NotBlank
 	@SafeHtml
 	public String getName() {
 		return this.name;
@@ -54,7 +43,6 @@ public abstract class Actor extends DomainEntity {
 		this.name = name;
 	}
 
-	@NotBlank
 	public String getSurname() {
 		return this.surname;
 	}
@@ -64,7 +52,6 @@ public abstract class Actor extends DomainEntity {
 	}
 
 	@Email
-	@NotBlank
 	public String getEmail() {
 		return this.email;
 	}
@@ -98,5 +85,17 @@ public abstract class Actor extends DomainEntity {
 	public void setUserAccount(final UserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	public Date getRegistrationMoment() {
+		return registrationMoment;
+	}
+
+	public void setRegistrationMoment(Date registrationMoment) {
+		this.registrationMoment = registrationMoment;
+	}
+
 
 }

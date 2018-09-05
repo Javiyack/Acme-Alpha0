@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Actor;
-import domain.Manager;
-import domain.Responsable;
-import domain.Technician;
+import domain.Administrator;
 import domain.User;
 import forms.ActorForm;
 import repositories.ActorRepository;
@@ -42,6 +41,8 @@ public class ActorService {
 
 	@Autowired
 	private FolderService folderService;
+	@Autowired
+	private ConfigurationService configurationService;
 
 	// Constructors -----------------------------------------------------------
 	public ActorService() {
@@ -77,12 +78,12 @@ public class ActorService {
 		if (actor.getId() == 0)
 			actor.getUserAccount().setActive(false);
 		if (actor.getId() != 0)
-				Assert.isTrue(actor.equals(this.findByPrincipal()), "not.allowed.action");
+			Assert.isTrue(actor.equals(this.findByPrincipal()), "not.allowed.action");
 
 		result = this.actorRepository.save(actor);
 		this.flush();
-		if(actor.getId()==0) {
-			this.folderService.createSystemFolders(result);			
+		if (actor.getId() == 0) {
+			this.folderService.createSystemFolders(result);
 		}
 
 		return result;
@@ -144,121 +145,122 @@ public class ActorService {
 
 	public Actor reconstruct(final ActorForm actorForm, final BindingResult binding) {
 		Actor logedActor = null;
+
 		UserAccount useraccount = null;
 		final Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		if (actorForm.getId() == 0) {
-			actorForm.setNewPassword(actorForm.getPassword());
+			actorForm.getAccount().setNewPassword(actorForm.getAccount().getPassword());
 			useraccount = new UserAccount();
-
-			switch (actorForm.getAuthority()) {
-			case Authority.MANAGER:
-				logedActor = new Manager();
-				break;
-			case Authority.RESPONSABLE:
-				logedActor = new Responsable();
-				break;
-			case Authority.TECHNICIAN:
-				logedActor = new Technician();
-				break;
+			switch (actorForm.getAccount().getAuthority()) {
 			case Authority.USER:
 				logedActor = new User();
+				break;
+			case Authority.ADMINISTRATOR:
+				logedActor = new Administrator();
 				break;
 			default:
 				break;
 			}
-			useraccount = this.userAccountService.create(actorForm.getAuthority());
+			useraccount = this.userAccountService.create(actorForm.getAccount().getAuthority());
 			logedActor.setUserAccount(useraccount);
 
-			logedActor.getUserAccount().setUsername(actorForm.getUsername());
-			logedActor.getUserAccount().setPassword(actorForm.getPassword());
+			logedActor.getUserAccount().setUsername(actorForm.getAccount().getUsername());
+			logedActor.getUserAccount().setPassword(actorForm.getAccount().getPassword());
 			logedActor.setName(actorForm.getName());
 			logedActor.setSurname(actorForm.getSurname());
 			logedActor.setEmail(actorForm.getEmail());
 			logedActor.setAddress(actorForm.getAddress());
 			logedActor.setPhone(actorForm.getPhone());
-			logedActor.setCustomer(actorForm.getCustomer());
+			logedActor.setRegistrationMoment(new Date());
 			this.validator.validate(actorForm, binding);
-			Assert.isTrue(actorForm.getPassword().equals(actorForm.getConfirmPassword()),
-					"msg.userAccount.repeatPassword.mismatch");
-			logedActor.getUserAccount().setPassword(encoder.encodePassword(actorForm.getPassword(), null));
-			// Al registrarse, el usuario esta desactivado. El admin debe de activarlo.
-			useraccount.setActive(false);
-			if(actorForm.getCustomer()!=null)
-				Assert.isTrue(actorForm.getPassKey().equals(actorForm.getCustomer().getPassKey()),
-					"msg.customer.passkey.mismatch");
-			
+			this.validator.validate(actorForm.getAccount(), binding);
+			if (!binding.hasErrors()) {
+				Assert.isTrue(actorForm.getAccount().getPassword().equals(actorForm.getAccount().getConfirmPassword()),
+
+						"msg.userAccount.repeatPassword.mismatch");
+				logedActor.getUserAccount()
+						.setPassword(encoder.encodePassword(actorForm.getAccount().getPassword(), null));
+				// Al registrarse, el usuario esta desactivado. El admin debe de activarlo.
+				useraccount.setActive(false);
+				Assert.isTrue(actorForm.isAgree(), "msg.not.terms.agree.block");
+			}
 		} else {
-			final String formPass = encoder.encodePassword(actorForm.getPassword(), null);
+			this.validator.validate(actorForm, binding);
+			final String formPass = encoder.encodePassword(actorForm.getAccount().getPassword(), null);
 			logedActor = this.findByPrincipal();
-			Assert.notNull(logedActor,"msg.not.loged.block");
-			logedActor.setName(actorForm.getName());
-			logedActor.setSurname(actorForm.getSurname());
-			logedActor.setEmail(actorForm.getEmail());
-			logedActor.setAddress(actorForm.getAddress());
-			logedActor.setPhone(actorForm.getPhone());
+			Assert.notNull(logedActor, "msg.not.loged.block");
+			if (!binding.hasErrors()) {
+				logedActor.setName(actorForm.getName());
+				logedActor.setSurname(actorForm.getSurname());
+				logedActor.setEmail(actorForm.getEmail());
+				logedActor.setAddress(actorForm.getAddress());
+				logedActor.setPhone(actorForm.getPhone());
+			} // Si ha cambiado algún parámetro del Authority (Usuario, password)
+			if (!actorForm.getAccount().getUsername().equals(logedActor.getUserAccount().getUsername())) {
 
-			// Si ha cambiado algún parámetro del Authority (Usuario, password)
-			if (!actorForm.getUsername().equals(logedActor.getUserAccount().getUsername())) {
-
-				if (!actorForm.getNewPassword().isEmpty()) {
+				if (!actorForm.getAccount().getNewPassword().isEmpty()) {
 					// Valida el la cuenta de usuario
-					this.validator.validate(actorForm, binding);
-					Assert.isTrue(actorForm.getNewPassword().equals(actorForm.getConfirmPassword()),
+					this.validator.validate(actorForm.getAccount(), binding);
+					Assert.isTrue(
+							actorForm.getAccount().getNewPassword().equals(actorForm.getAccount().getConfirmPassword()),
 							"msg.userAccount.repeatPassword.mismatch");
 					// Cambia la contraseña
 					// Comprueba la contraseña y la cambia si todo ha ido bien
 					Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()), "msg.wrong.password");
-					Assert.isTrue(checkLength(actorForm.getNewPassword()), "msg.password.length");
-					logedActor.getUserAccount().setPassword(encoder.encodePassword(actorForm.getNewPassword(), null));
+					Assert.isTrue(checkLength(actorForm.getAccount().getNewPassword()), "msg.password.length");
+					logedActor.getUserAccount()
+							.setPassword(encoder.encodePassword(actorForm.getAccount().getNewPassword(), null));
 				} else {
-					actorForm.setNewPassword("XXXXX");
-					actorForm.setConfirmPassword("XXXXX");
+					actorForm.setNewPassword(null);
+					actorForm.getAccount().setConfirmPassword(null);
 					// Valida el la cuenta de usuario
-					this.validator.validate(actorForm, binding);
+					this.validator.validate(actorForm.getAccount(), binding);
 					// Comprueba la contraseña
 					Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()), "msg.wrong.password");
 
 				}
 
 				// Cambia el nombre de usuario
-				logedActor.getUserAccount().setUsername(actorForm.getUsername());
+				logedActor.getUserAccount().setUsername(actorForm.getAccount().getUsername());
 
 			} else {
-				if (!actorForm.getPassword().isEmpty()) {
-					if (!actorForm.getNewPassword().isEmpty()) {
+				if (!actorForm.getAccount().getPassword().isEmpty()) {
+					if (!actorForm.getAccount().getNewPassword().isEmpty()) {
 						// Valida el la cuenta de usuario
 						this.validator.validate(actorForm, binding);
-						Assert.isTrue(actorForm.getNewPassword().equals(actorForm.getConfirmPassword()),
+						Assert.isTrue(
+								actorForm.getAccount().getNewPassword()
+										.equals(actorForm.getAccount().getConfirmPassword()),
 								"msg.userAccount.repeatPassword.mismatch");
 						// Comprueba la contraseña
-						Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()),
-								"msg.wrong.password");
-						Assert.isTrue(checkLength(actorForm.getNewPassword()), "msg.password.length");
+						Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()), "msg.wrong.password");
+						Assert.isTrue(checkLength(actorForm.getAccount().getNewPassword()), "msg.password.length");
 						logedActor.getUserAccount()
-								.setPassword(encoder.encodePassword(actorForm.getNewPassword(), null));
+								.setPassword(encoder.encodePassword(actorForm.getAccount().getNewPassword(), null));
 					} else {
-						actorForm.setNewPassword("XXXXX");
-						actorForm.setConfirmPassword("XXXXX");
+						actorForm.getAccount().setNewPassword("XXXXX");
+						actorForm.getAccount().setConfirmPassword("XXXXX");
 						// Valida el la cuenta de usuario
 						this.validator.validate(actorForm, binding);
 						// Comprueba la contraseña
-						Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()),
-								"msg.wrong.password");
+						Assert.isTrue(formPass.equals(logedActor.getUserAccount().getPassword()), "msg.wrong.password");
 					}
 
 				} else {
 					// Como no ha cambiado ni usuario ni escrito contraseña seteamos temporalmente
 					// el username y passwords para pasar la validacion de userAccount
 					// Valida El formulario
-					actorForm.setPassword("XXXXX");
-					actorForm.setNewPassword("XXXXX");
-					actorForm.setConfirmPassword("XXXXX");
-					this.validator.validate(actorForm, binding);
+					actorForm.getAccount().setPassword("XXXXX");
+					actorForm.getAccount().setNewPassword("XXXXX");
+					actorForm.getAccount().setConfirmPassword("XXXXX");
+					this.validator.validate(actorForm.getAccount(), binding);
 				}
 			}
 		}
 		return logedActor;
 	}
+
+	
 
 	private boolean checkLength(String newPassword) {
 		return newPassword.length() > 4 && newPassword.length() < 33;
@@ -267,5 +269,16 @@ public class ActorService {
 	public void flush() {
 		this.actorRepository.flush();
 
+	}
+
+	public boolean activation(int actorId) {
+		final Actor ppal = this.findByPrincipal();
+		Assert.notNull(ppal, "msg.not.loged.block");
+		Assert.notNull(ppal instanceof Administrator, "msg.not.owned.block");
+		
+		Actor actror = this.actorRepository.findOne(actorId);
+		Assert.notNull(ppal, "msg.not.found.error");
+		actror.getUserAccount().setActive(!actror.getUserAccount().isEnabled());
+		return actror.getUserAccount().isEnabled();
 	}
 }

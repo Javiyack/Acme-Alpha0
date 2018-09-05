@@ -85,17 +85,23 @@ public class TabooWordService {
 		this.tabooWordRepository.delete(tabooWord);
 	}
 
+	public void deleteById(final int tabooWordId) {
+		final Administrator admin = this.administratorService.findByPrincipal();
+		Assert.notNull(admin);
+		this.tabooWordRepository.delete(tabooWordId);
+	}
+
 	public void flush() {
 		this.tabooWordRepository.flush();
 
 	}
 	
-	public Collection<TabooWord> getTabooWordFromMessageSubjectAndBody(final String subject, final String body) {
+	public Collection<TabooWord> getTabooWordFromMyMessageSubjectAndBody(final String subject, final String body) {
 
 		Assert.notNull(subject);
 		Assert.notNull(body);
 
-		return this.tabooWordRepository.getTabooWordFromMessageSubjectAndBody(subject, body);
+		return this.tabooWordRepository.getTabooWordFromMyMessageSubjectAndBody(subject, body);
 
 	}
 }

@@ -57,39 +57,6 @@ public class UserAccountService {
 		return res;
 	}
 	
-	public UserAccount createAsManager() {
-		UserAccount res;
-		res = new UserAccount();
-		final Authority authority = new Authority();
-		final List<Authority> authorities = new ArrayList<Authority>();
-		authority.setAuthority(Authority.MANAGER);
-		authorities.add(authority);
-		res.setAuthorities(authorities);
-
-		return res;
-	}
-	public UserAccount createAsGerente() {
-		UserAccount res;
-		res = new UserAccount();
-		final Authority authority = new Authority();
-		final List<Authority> authorities = new ArrayList<Authority>();
-		authority.setAuthority(Authority.RESPONSABLE);
-		authorities.add(authority);
-		res.setAuthorities(authorities);
-
-		return res;
-	}
-	public UserAccount createAsTechnician() {
-		UserAccount res;
-		res = new UserAccount();
-		final Authority authority = new Authority();
-		final List<Authority> authorities = new ArrayList<Authority>();
-		authority.setAuthority(Authority.TECHNICIAN);
-		authorities.add(authority);
-		res.setAuthorities(authorities);
-
-		return res;
-	}
 	
 
 	public Collection<UserAccount> findAll() {

@@ -23,49 +23,21 @@
 		<bean class="converters.AdministratorToStringConverter" />
 		<bean class="converters.AuthorityToStringConverter" />
 		<bean class="converters.UserAccountToString" />
-		<bean class="converters.UserToStringConverter" />
-		<bean class="converters.ManagerToStringConverter" />
-		<bean class="converters.TecnicianToStringConverter" />
-		<bean class="converters.ServantToStringConverter" />
-		<bean class="converters.IncidenceToStringConverter" />
-		<bean class="converters.LaborToStringConverter" />
-		<bean class="converters.SaleToStringConverter" />
-		<bean class="converters.RequestToStringConverter" />
-		<bean class="converters.LocationToStringConverter" />
-		<bean class="converters.EquipmentToStringConverter" />
-		<bean class="converters.CustomerToStringConverter" />
-		<bean class="converters.FileToStringConverter" />
-		
+		<bean class="converters.UserToStringConverter" />		
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.FolderToStringConverter" />
-		<bean class="converters.TabooWordToStringConverter" />
 		<bean class="converters.ConfigurationToStringConverter" />
-		<bean class="converters.CurriculumToStringConverter" />
-		
-		
+		<bean class="converters.TabooWordToStringConverter" />		
 		
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAdministratorConverter" />
 		<bean class="converters.StringToAuthorityConverter" />
 		<bean class="converters.StringToUserAccount" />
-		<bean class="converters.StringToUserConverter" />
-		<bean class="converters.StringToManagerConverter" />
-		<bean class="converters.StringToTecnicianConverter" />
-		<bean class="converters.StringToServantConverter" />	
-		<bean class="converters.StringToIncidenceConverter" />		
-		<bean class="converters.StringToLaborConverter" />		
-		<bean class="converters.StringToSaleConverter" />		
-		<bean class="converters.StringToRequestConverter" />		
-		<bean class="converters.StringToLocationConverter" />		
-		<bean class="converters.StringToEquipmentConverter" />		
-		<bean class="converters.StringToCustomerConverter" />		
-		<bean class="converters.StringToFileConverter" />		
-			
+		<bean class="converters.StringToUserConverter" />			
 		<bean class="converters.StringToMessageConverter" />	
 		<bean class="converters.StringToFolderConverter" />
-		<bean class="converters.StringToTabooWordConverter" />	
 		<bean class="converters.StringToConfigurationConverter" />
-		<bean class="converters.StringToCurriculumConverter" />
+		<bean class="converters.StringToTabooWordConverter" />
 			
 			
 			
