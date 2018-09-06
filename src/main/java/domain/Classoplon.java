@@ -15,13 +15,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = { @Index(columnList = "subject, body") }, uniqueConstraints = @UniqueConstraint(columnNames = { "name",
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "name",
 		"parent_id" }))
 public class Classoplon extends DomainEntity {
 
 	/* Clase maestra para usar como plantilla */
 
 
+	
 	private String name;
 	private String subject;
 	private String body;
@@ -31,12 +32,11 @@ public class Classoplon extends DomainEntity {
 
 	private boolean broadcast;
 	private boolean spam;
-	private boolean system;
+	private boolean systemItem;
 
-	private Double lenght;
-	private Double real;
+	private Double NumeroReal;
 
-	private Integer entero;
+	private Integer numeroEntero;
 	private Integer numberOfDays;
 
 	private Collection<String> comments;
@@ -137,12 +137,12 @@ public class Classoplon extends DomainEntity {
 	}
 
 	@NotNull
-	public boolean getSystem() {
-		return this.system;
+	public boolean getSystemItem() {
+		return this.systemItem;
 	}
 
-	public void setSystem(final boolean system) {
-		this.system = system;
+	public void setSystemItem(final boolean system) {
+		this.systemItem = system;
 	}
 
 	@ManyToOne(optional = true)
@@ -173,29 +173,6 @@ public class Classoplon extends DomainEntity {
 		this.broadcast = broadcast;
 	}
 	
-	public Double getLenght() {
-		return lenght;
-	}
-
-	public void setLenght(Double lenght) {
-		this.lenght = lenght;
-	}
-
-	public Double getReal() {
-		return real;
-	}
-
-	public void setReal(Double real) {
-		this.real = real;
-	}
-
-	public Integer getEntero() {
-		return entero;
-	}
-
-	public void setEntero(Integer entero) {
-		this.entero = entero;
-	}
 
 	public Integer getNumberOfDays() {
 		return numberOfDays;
@@ -233,6 +210,21 @@ public class Classoplon extends DomainEntity {
 
 	public void setFolder(Folder folder) {
 		this.folder = folder;
+	}
+	public Double getNumeroReal() {
+		return NumeroReal;
+	}
+
+	public void setNumeroReal(Double numeroReal) {
+		NumeroReal = numeroReal;
+	}
+
+	public Integer getNumeroEntero() {
+		return numeroEntero;
+	}
+
+	public void setNumeroEntero(Integer numeroEntero) {
+		this.numeroEntero = numeroEntero;
 	}
 
 
