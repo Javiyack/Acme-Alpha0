@@ -1,10 +1,7 @@
 package controllers;
 
-import java.io.IOException;
-import java.util.Collection;
-
-import javax.servlet.http.HttpServletResponse;
-
+import domain.File;
+import forms.FileForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -15,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import domain.Curriculum;
-import domain.File;
-import domain.SubSection;
-import forms.FileForm;
 import services.ActorService;
 import services.FileService;
-import services.SubSectionService;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/file")
@@ -37,11 +32,11 @@ public class FileController extends AbstractController {
 	
 	//List
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam int subSectionId, Integer pageSize) {
+	public ModelAndView list(@RequestParam int messageId, Integer pageSize) {
 		
 		ModelAndView result;
 		pageSize = pageSize!=null?pageSize:5;
-		Collection<File> files = this.fileService.findAllBySubSection(subSectionId);
+		Collection<File> files = this.fileService.findAllMessage(messageId);
 		result = new ModelAndView("file/list");
 		result.addObject("files", files);
 		result.addObject("pageSize", pageSize);
@@ -238,35 +233,17 @@ public class FileController extends AbstractController {
 	}
 
 	private ModelAndView getRedirect(File file) {
-
-		if (file.getTender() != null) {
-			return new ModelAndView("redirect:/tender/display.do?tenderId=" + file.getTender().getId());
-		}
-		if (file.getTenderResult() != null) {
-			return new ModelAndView(
-					"redirect:/tenderResult/display.do?tenderResultId=" + file.getTenderResult().getId());
-		}
-		if (file.getSubSection() != null) {
-			return new ModelAndView("redirect:/subSection/display.do?subSectionId=" + file.getSubSection().getId());
-		}
+		String redirect="redirect:/";
 		if (file.getMessage() != null) {
-			return new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + file.getMessage().getId());
+			redirect+="curriculum/display.do?curriculumId=" + file.getMessage().getId();
 		}
-
+		new ModelAndView(redirect);
 		return null;
 	}
 
 	private Integer getFk(File file) {
 		Integer res = null;
-		if (file.getTender() != null) {
-			res = file.getTender().getId();
-		}
-		if (file.getTenderResult() != null) {
-			res = file.getTenderResult().getId();
-		}
-		if (file.getSubSection() != null) {
-			res = file.getSubSection().getId();
-		}
+
 		if (file.getMessage() != null) {
 			res = file.getMessage().getId();
 		}
@@ -276,15 +253,6 @@ public class FileController extends AbstractController {
 
 	private String getType(File file) {
 		String res = "";
-		if (file.getTender() != null) {
-			res = "tender";
-		}
-		if (file.getTenderResult() != null) {
-			res = "tenderResult";
-		}
-		if (file.getSubSection() != null) {
-			res = "subSection";
-		}
 		if (file.getMessage() != null) {
 			res = "curriculum";
 		}

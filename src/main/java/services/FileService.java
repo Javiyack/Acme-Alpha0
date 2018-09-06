@@ -1,27 +1,21 @@
 
 package services;
 
-import java.util.Collection;
-import java.util.Date;
-
-import javax.transaction.Transactional;
-
+import domain.Actor;
+import domain.Constant;
+import domain.File;
 import domain.Message;
+import forms.FileForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-
-import domain.Actor;
-import domain.Constant;
-import domain.Curriculum;
-import domain.File;
-import domain.SubSection;
-import domain.Tender;
-import domain.TenderResult;
-import forms.FileForm;
 import repositories.FileRepository;
+
+import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -113,12 +107,6 @@ public class FileService {
 		File resultFile;
 		if (fileForm.getId() == 0) {
 			switch (fileForm.getType()) {
-			case Constant.FILE_CURRICULUM:
-				break;
-
-			case Constant.FILE_SUBSECTION:
-				break;
-
 			case Constant.FILE_TENDER:
 				break;
 
@@ -205,7 +193,7 @@ public class FileService {
 		return resultFile;
 	}
 
-	public Collection<File> findAllBySubSection(int ownerId) {
-		return fileRepository.findByOwner(ownerId);
+	public Collection<File> findAllMessage(int messageId) {
+		return fileRepository.findByMessage(messageId);
 	}
 }
