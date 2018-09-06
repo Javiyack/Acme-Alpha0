@@ -1,11 +1,13 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -30,6 +32,8 @@ public abstract class Actor extends DomainEntity {
 	private String 		phone; 			// Optional
 	private String 		address; 		// Optional	
 	private Date 		registrationMoment;
+	
+	private Collection<String> phones;
 	//Relationships
 	private UserAccount userAccount;
 	
@@ -95,6 +99,16 @@ public abstract class Actor extends DomainEntity {
 
 	public void setRegistrationMoment(Date registrationMoment) {
 		this.registrationMoment = registrationMoment;
+	}
+
+	@ElementCollection
+	//@NotNull
+	public Collection<String> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Collection<String> phones) {
+		this.phones = phones;
 	}
 
 
