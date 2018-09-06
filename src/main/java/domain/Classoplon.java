@@ -19,6 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 		"parent_id" }))
 public class Classoplon extends DomainEntity {
 
+	/* Clase maestra para usar como plantilla */
+
+
 	private String name;
 	private String subject;
 	private String body;
