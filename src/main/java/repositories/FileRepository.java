@@ -21,6 +21,6 @@ public interface FileRepository extends JpaRepository<File, Integer> {
 	@Query("select f from File f where f.tenderResult.id = ?1")
 	Collection<File> findByTenderResult(int tenderResultId);
 	
-	@Query("select f from File f where f.curriculum.id = ?1")
+	@Query("select f from File f where f.Classoplon.id = ?1")
 	Collection<File> findByCurriculum(int curriculumId);	
 }

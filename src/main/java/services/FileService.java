@@ -33,14 +33,6 @@ public class FileService {
 	// Services
 	@Autowired
 	private ActorService actorService;
-	@Autowired
-	private TenderService tenderService;
-	@Autowired
-	private CurriculumService curriculumService;
-	@Autowired
-	private TenderResultService tenderResultService;
-	@Autowired
-	private SubSectionService subSectionService;
 
 	@Autowired
 	private Validator validator;
@@ -52,62 +44,14 @@ public class FileService {
 
 	// Methods CRUD ---------------------------------------------------------
 
-	public File createForSubSection(final int subSectionId) {
-		Actor actor = this.actorService.findByPrincipal();
 
-		final SubSection subSection = this.subSectionService.findOne(subSectionId);
-		Assert.notNull(subSection);
+	public File create(final int fileId) {
+		File result;
 
-		if (subSection.getAdministrative() != null) {
-			Assert.isTrue(subSection.getAdministrative().getId() == actor.getId());
-		}
+		result = new File(fileId);
+		Assert.notNull(result);
 
-		if (subSection.getCommercial() != null) {
-			Assert.isTrue(subSection.getCommercial().getId() == actor.getId());
-		}
-
-		final File file = new File();
-		file.setSubSection(subSection);
-
-		return file;
-	}
-
-	public File createForCurriculum(final int curriculumId) {
-		Actor actor = this.actorService.findByPrincipal();
-
-		Curriculum curriculum = this.curriculumService.findOne(curriculumId);
-		Assert.notNull(curriculum);
-
-		if (curriculum.getSubSection().getCommercial() != null) {
-			Assert.isTrue(curriculum.getSubSection().getCommercial().getId() == actor.getId());
-		}
-
-		final File file = new File();
-		file.setCurriculum(curriculum);
-
-		return file;
-	}
-
-	public File createForTender(final int tenderId) {
-		Actor actor = this.actorService.findByPrincipal();
-
-		final Tender tender = this.tenderService.findOneToEdit(tenderId);
-		Assert.isTrue(tender.getAdministrative().getId() == actor.getId());
-
-		final File file = new File();
-		file.setTender(tender);
-		return file;
-	}
-
-	public File createForTenderResult(final int tenderResultId) {
-		Actor actor = this.actorService.findByPrincipal();
-
-		final TenderResult tenderResult = this.tenderResultService.findOne(tenderResultId);
-		Assert.isTrue(tenderResult.getTender().getAdministrative().getId() == actor.getId());
-
-		final File file = new File();
-		file.setTenderResult(tenderResult);
-		return file;
+		return result;
 	}
 
 	public File findOne(final int fileId) {
@@ -119,62 +63,15 @@ public class FileService {
 		return result;
 	}
 
-	public Collection<File> findAllByTender(final int tenderId) {
 
-		Collection<File> result;
-
-		result = this.fileRepository.findByTender(tenderId);
-		Assert.notNull(result);
-
-		return result;
-	}
-
-	public Collection<File> findAllByCurriculum(final int curriculumId) {
-
-		Collection<File> result;
-
-		result = this.fileRepository.findByCurriculum(curriculumId);
-		Assert.notNull(result);
-
-		return result;
-	}
-
-	public Collection<File> findAllByTenderResult(final int tenderResultId) {
-
-		Collection<File> result;
-
-		result = this.fileRepository.findByTenderResult(tenderResultId);
-		Assert.notNull(result);
-
-		return result;
-	}
-
-	public Collection<File> findAllBySubSection(final int subSectionId) {
-
-		Collection<File> result;
-
-		result = this.fileRepository.findBySubsection(subSectionId);
-		Assert.notNull(result);
-
-		return result;
-	}
 
 	public boolean canEditFile(final File file) {
 
 		Actor actor = this.actorService.findByPrincipal();
 		Assert.notNull(file);
 
-		if (file.getTender() != null) {
-			return file.getTender().getAdministrative().getId() == actor.getId();
-		}
-		if (file.getTenderResult() != null) {
-			return file.getTenderResult().getTender().getAdministrative().getId() == actor.getId();
-		}
-		if (file.getSubSection() != null) {
-			return subSectionService.canEditSubSection(file.getSubSection().getId());
-		}
-		if (file.getCurriculum() != null) {
-			return subSectionService.canEditSubSection(file.getCurriculum().getSubSection().getId());
+		if (true) {
+			return true;
 		}
 		return false;
 	}
@@ -183,17 +80,11 @@ public class FileService {
 
 		Assert.notNull(file);
 
-		if (file.getTender() != null) {
+		Actor actor = this.actorService.findByPrincipal();
+		Assert.notNull(file);
+
+		if (true) {
 			return true;
-		}
-		if (file.getTenderResult() != null) {
-			return true;
-		}
-		if (file.getSubSection() != null) {
-			return subSectionService.canViewSubSection(file.getSubSection().getId());
-		}
-		if (file.getCurriculum() != null) {
-			return subSectionService.canViewSubSection(file.getCurriculum().getSubSection().getId());
 		}
 		return false;
 	}
@@ -214,40 +105,28 @@ public class FileService {
 			this.fileRepository.delete(file);
 	}
 
-	public void deleteInBatch(final Collection<File> files) {
-		Assert.notNull(files);
-		this.fileRepository.deleteInBatch(files);
-
-	}
-
-	public void flush() {
-		this.fileRepository.flush();
-
-	}
-
 	public File reconstruct(FileForm fileForm, BindingResult binding) {
 		File resultFile;
 		if (fileForm.getId() == 0) {
 			resultFile = new File();
 			switch (fileForm.getType()) {
 			case Constant.FILE_CURRICULUM:
-				resultFile = this.createForCurriculum(fileForm.getFk());
 				break;
 
 			case Constant.FILE_SUBSECTION:
-				resultFile = this.createForSubSection(fileForm.getFk());
 				break;
 
 			case Constant.FILE_TENDER:
-				resultFile = this.createForTender(fileForm.getFk());
 				break;
 
 			case Constant.FILE_TENDER_RESULT:
-				resultFile = this.createForTenderResult(fileForm.getFk());
 				break;
 			default:
 				break;
+
 			}
+			resultFile = this.create(fileForm.getFk());
+
 			resultFile.setComment(fileForm.getComment());
 			try {
 				if (fileForm.getFile().isEmpty()) {

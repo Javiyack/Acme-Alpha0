@@ -2,10 +2,8 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Actor;
 import domain.Curriculum;
 import domain.File;
 import domain.SubSection;
@@ -255,8 +252,8 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			return new ModelAndView("redirect:/subSection/display.do?subSectionId=" + file.getSubSection().getId());
 		}
-		if (file.getCurriculum() != null) {
-			return new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + file.getCurriculum().getId());
+		if (file.getClassoplon() != null) {
+			return new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + file.getClassoplon().getId());
 		}
 
 		return null;
@@ -273,8 +270,8 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			res = file.getSubSection().getId();
 		}
-		if (file.getCurriculum() != null) {
-			res = file.getCurriculum().getId();
+		if (file.getClassoplon() != null) {
+			res = file.getClassoplon().getId();
 		}
 
 		return res;
@@ -291,7 +288,7 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			res = "subSection";
 		}
-		if (file.getCurriculum() != null) {
+		if (file.getClassoplon() != null) {
 			res = "curriculum";
 		}
 

@@ -40,7 +40,7 @@ public class Classoplon extends DomainEntity {
 	private Integer numberOfDays;
 
 	private Collection<String> comments;
-	
+
 	// Relationships
 	private Classoplon parent;
 	private Actor actor;
@@ -48,12 +48,15 @@ public class Classoplon extends DomainEntity {
 	private Actor sender;
 	private Message mensaje;
 	private Folder folder;
-	// Relationships
 
-	
-	
-	
-	
+
+	// Collection of Relationships
+	private Collection<File> files;
+
+
+
+
+
 	public boolean isSpam() {
 		return spam;
 	}

@@ -28,11 +28,9 @@ public class File extends DomainEntity {
 	private Date			uploadDate;
 	private String			mimeType;
 	private byte[]			data;
-	private Long			size;						//Relationships
-	private Curriculum		curriculum;
-	private SubSection		subSection;
-	private Tender			tender;
-	private TenderResult	tenderResult;
+	private Long			size;
+	//Relationships
+	private Classoplon 		classoplon;
 
 
 	@SafeHtml(whitelistType = WhiteListType.NONE)
@@ -73,42 +71,7 @@ public class File extends DomainEntity {
 	public void setData(final byte[] data) {
 		this.data = data;
 	}
-	@Valid
-	@ManyToOne(optional = true)
-	public Curriculum getCurriculum() {
-		return this.curriculum;
-	}
 
-	public void setCurriculum(final Curriculum curriculum) {
-		this.curriculum = curriculum;
-	}
-	@Valid
-	@ManyToOne(optional = true)
-	public SubSection getSubSection() {
-		return this.subSection;
-	}
-
-	public void setSubSection(final SubSection subSection) {
-		this.subSection = subSection;
-	}
-	@Valid
-	@ManyToOne(optional = true)
-	public Tender getTender() {
-		return this.tender;
-	}
-
-	public void setTender(final Tender tender) {
-		this.tender = tender;
-	}
-	@Valid
-	@ManyToOne(optional = true)
-	public TenderResult getTenderResult() {
-		return this.tenderResult;
-	}
-
-	public void setTenderResult(final TenderResult tenderResult) {
-		this.tenderResult = tenderResult;
-	}
 
 	public String getComment() {
 		return this.comment;
@@ -126,4 +89,13 @@ public class File extends DomainEntity {
 		this.size = size;
 	}
 
+	@Valid
+	@ManyToOne(optional = true)
+	public Classoplon getClassoplon() {
+		return classoplon;
+	}
+
+	public void setClassoplon(Classoplon classoplon) {
+		this.classoplon = classoplon;
+	}
 }
