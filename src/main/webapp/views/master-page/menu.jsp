@@ -111,8 +111,7 @@
 				code="label.tabooWords" />
 		</a> 
 <a href="actor/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-			class="fa fa-users fa-fw"></i>  <spring:message
-				code="label.tabooWords" />
+			class="fa fa-users fa-fw"></i>  Activacion de usuarios registrados
 		</a> 
 </security:authorize>
 <security:authorize access="isAnonymous()">

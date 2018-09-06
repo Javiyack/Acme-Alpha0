@@ -21,9 +21,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = {
-	@Index(columnList = "subject, body")
-})
 public class Follow extends DomainEntity {
 
 	//Relationships

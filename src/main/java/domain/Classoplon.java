@@ -4,15 +4,7 @@ package domain;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -210,6 +202,8 @@ public class Classoplon extends DomainEntity {
 		this.numberOfDays = numberOfDays;
 	}
 
+	@ElementCollection
+	@NotNull
 	public Collection<String> getComments() {
 		return comments;
 	}
@@ -218,6 +212,8 @@ public class Classoplon extends DomainEntity {
 		this.comments = comments;
 	}
 
+	@NotNull
+	@ManyToOne(optional = false)
 	public Message getMensaje() {
 		return mensaje;
 	}
@@ -226,6 +222,8 @@ public class Classoplon extends DomainEntity {
 		this.mensaje = mensaje;
 	}
 
+	@NotNull
+	@ManyToOne(optional = false)
 	public Folder getFolder() {
 		return folder;
 	}

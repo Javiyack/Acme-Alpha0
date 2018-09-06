@@ -24,8 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = { @Index(columnList = "subject, body") }, uniqueConstraints = @UniqueConstraint(columnNames = { "name",
-		"parent_id" }))
+@Table(indexes = { @Index(columnList = "name, description")})
 public class Hike extends DomainEntity {
 	
 	private String name;
