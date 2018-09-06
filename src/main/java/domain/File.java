@@ -30,7 +30,7 @@ public class File extends DomainEntity {
 	private byte[]			data;
 	private Long			size;
 	//Relationships
-	private Classoplon 		classoplon;
+	private Message		 	message;
 
 
 	@SafeHtml(whitelistType = WhiteListType.NONE)
@@ -91,11 +91,11 @@ public class File extends DomainEntity {
 
 	@Valid
 	@ManyToOne(optional = true)
-	public Classoplon getClassoplon() {
-		return classoplon;
+	public Message getMessage() {
+		return message;
 	}
 
-	public void setClassoplon(Classoplon classoplon) {
-		this.classoplon = classoplon;
+	public void setMessage(Message message) {
+		this.message = message;
 	}
 }

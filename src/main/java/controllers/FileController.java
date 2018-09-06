@@ -34,16 +34,13 @@ public class FileController extends AbstractController {
 	
 	@Autowired
 	private ActorService						actorService;
-	@Autowired
-	private SubSectionService					subSectionService;
 	
 	//List
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam int subSectionId, Integer pageSize) {
 		
 		ModelAndView result;
-		pageSize = pageSize!=null?pageSize:5;				
-		Assert.isTrue(this.subSectionService.canViewSubSection(subSectionId));			
+		pageSize = pageSize!=null?pageSize:5;
 		Collection<File> files = this.fileService.findAllBySubSection(subSectionId);
 		result = new ModelAndView("file/list");
 		result.addObject("files", files);
@@ -252,8 +249,8 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			return new ModelAndView("redirect:/subSection/display.do?subSectionId=" + file.getSubSection().getId());
 		}
-		if (file.getClassoplon() != null) {
-			return new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + file.getClassoplon().getId());
+		if (file.getMessage() != null) {
+			return new ModelAndView("redirect:/curriculum/display.do?curriculumId=" + file.getMessage().getId());
 		}
 
 		return null;
@@ -270,8 +267,8 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			res = file.getSubSection().getId();
 		}
-		if (file.getClassoplon() != null) {
-			res = file.getClassoplon().getId();
+		if (file.getMessage() != null) {
+			res = file.getMessage().getId();
 		}
 
 		return res;
@@ -288,7 +285,7 @@ public class FileController extends AbstractController {
 		if (file.getSubSection() != null) {
 			res = "subSection";
 		}
-		if (file.getClassoplon() != null) {
+		if (file.getMessage() != null) {
 			res = "curriculum";
 		}
 

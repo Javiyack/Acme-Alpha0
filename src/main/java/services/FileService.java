@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.transaction.Transactional;
 
+import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -33,6 +34,8 @@ public class FileService {
 	// Services
 	@Autowired
 	private ActorService actorService;
+	@Autowired
+	private MessageService messageService;
 
 	@Autowired
 	private Validator validator;
@@ -45,12 +48,13 @@ public class FileService {
 	// Methods CRUD ---------------------------------------------------------
 
 
-	public File create(final int fileId) {
+	public File create(final int messageId) {
 		File result;
-
-		result = new File(fileId);
+		result = new File();
 		Assert.notNull(result);
-
+		Message message = messageService.findOne(messageId);
+		Assert.notNull(message);
+		result.setMessage(message);
 		return result;
 	}
 
@@ -108,7 +112,6 @@ public class FileService {
 	public File reconstruct(FileForm fileForm, BindingResult binding) {
 		File resultFile;
 		if (fileForm.getId() == 0) {
-			resultFile = new File();
 			switch (fileForm.getType()) {
 			case Constant.FILE_CURRICULUM:
 				break;
@@ -126,6 +129,7 @@ public class FileService {
 
 			}
 			resultFile = this.create(fileForm.getFk());
+			resultFile.setMessage(messageService.findOne(fileForm.getFk()));
 
 			resultFile.setComment(fileForm.getComment());
 			try {
@@ -201,4 +205,7 @@ public class FileService {
 		return resultFile;
 	}
 
+	public Collection<File> findAllBySubSection(int ownerId) {
+		return fileRepository.findByOwner(ownerId);
+	}
 }
