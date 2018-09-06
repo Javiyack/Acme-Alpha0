@@ -20,11 +20,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Classoplon extends DomainEntity {
 
 	/* Clase maestra para usar como plantilla */
-	/* Clase maestra para usar como plantilla */
-	/* Clase maestra para usar como plantilla */
-	/* Clase maestra para usar como plantilla */
-	/* Clase maestra para usar como plantilla */
-	/* Clase maestra para usar como plantilla */
 
 
 	private String name;
