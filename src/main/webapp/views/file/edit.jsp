@@ -19,7 +19,7 @@
 	<spring:message code="file.name.placeholder" var="placeholder" />	
 	<acme:textbox code="file.name" path="name" placeholder="${placeholder }"/>
 	<br />
-	<acme:textbox code="subSection.comments" path="comment" />
+	<acme:textbox code="label.comments" path="comment" />
 	<br />
 	 
     <form:input type="file" path="file" id="file" class="formInput"/>
