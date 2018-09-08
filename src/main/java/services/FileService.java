@@ -68,10 +68,10 @@ public class FileService {
 		Actor actor = this.actorService.findByPrincipal();
 		Assert.notNull(file);
 
-		if (true) {
+		if (false) {
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	public boolean canViewFile(final File file) {
@@ -84,7 +84,7 @@ public class FileService {
 		if (true) {
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	public File save(final File file) {

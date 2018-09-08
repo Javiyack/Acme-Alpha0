@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.SafeHtml;
@@ -101,8 +102,9 @@ public abstract class Actor extends DomainEntity {
 		this.registrationMoment = registrationMoment;
 	}
 
+	@NotNull
+	@Pattern(regexp = "^\\d{8}$")
 	@ElementCollection
-	//@NotNull
 	public Collection<String> getPhones() {
 		return phones;
 	}

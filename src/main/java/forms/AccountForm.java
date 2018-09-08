@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import domain.Actor;
 
+import java.util.Collection;
+
 public class AccountForm {
 
 	private String	username;
@@ -16,8 +18,7 @@ public class AccountForm {
 	private String	newPassword;
 	private String	confirmPassword;
 	private String	authority;
-	
-	
+
 
 	//Constructors -------------------------
 
@@ -85,4 +86,6 @@ public class AccountForm {
 	public void setConfirmPassword(final String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+
+
 }

@@ -74,6 +74,7 @@ public class Hike extends DomainEntity {
 
 	@NotBlank
 	@SafeHtml
+	@Pattern(regexp = "^(EASY|MEDIUM|HARD)$")
 	public String getDifficulty() {
 		return difficulty;
 	}

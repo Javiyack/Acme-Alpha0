@@ -104,6 +104,7 @@ public class FolderController extends AbstractController {
 		Collection<Folder> otherFolders = folderService.findByActor();
 		otherFolders.remove(folder);
 		result.addObject("otherFolders", otherFolders);
+		result.addObject("editing", false);
 		return result;
 	}
 

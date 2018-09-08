@@ -171,6 +171,7 @@ public class ActorService {
 			logedActor.setEmail(actorForm.getEmail());
 			logedActor.setAddress(actorForm.getAddress());
 			logedActor.setPhone(actorForm.getPhone());
+			logedActor.setPhones(actorForm.getPhones());
 			logedActor.setRegistrationMoment(new Date());
 			this.validator.validate(actorForm, binding);
 			this.validator.validate(actorForm.getAccount(), binding);
@@ -195,6 +196,7 @@ public class ActorService {
 				logedActor.setEmail(actorForm.getEmail());
 				logedActor.setAddress(actorForm.getAddress());
 				logedActor.setPhone(actorForm.getPhone());
+				logedActor.setPhones(actorForm.getPhones());
 			} // Si ha cambiado algún parámetro del Authority (Usuario, password)
 			if (!actorForm.getAccount().getUsername().equals(logedActor.getUserAccount().getUsername())) {
 

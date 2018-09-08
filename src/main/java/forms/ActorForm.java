@@ -11,6 +11,8 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import domain.Actor;
 
+import java.util.Collection;
+
 public class ActorForm {
 
 	private String name;
@@ -28,8 +30,34 @@ public class ActorForm {
 	private AccountForm account;
 	private int id;
 	private int version;
+	private Collection<String> phones;
+
+
+
 
 	// Constructors -------------------------
+
+	public ActorForm() {
+		super();
+		this.id = 0;
+		this.version = 0;
+		this.account = new AccountForm();
+	}
+
+	public ActorForm(final Actor actor) {
+		super();
+		this.id = actor.getId();
+		this.setName(actor.getName());
+		this.setSurname(actor.getSurname());
+		this.setEmail(actor.getEmail());
+		this.setPhone(actor.getPhone());
+		this.setPhones(actor.getPhones());
+		this.setAddress(actor.getAddress());
+		this.setAccount(new AccountForm(actor));
+		this.setAuthority(this.getAccount().getAuthority());
+		this.setUsername(actor.getUserAccount().getUsername());
+
+	}
 
 	public String getAuthority() {
 		return authority;
@@ -38,6 +66,14 @@ public class ActorForm {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 		this.account.setAuthority(authority);
+	}
+
+
+	public Collection<String> getPhones() {
+		return phones;
+	}
+	public void setPhones(Collection<String> phones) {
+		this.phones = phones;
 	}
 
 	public String getUsername() {
@@ -93,26 +129,6 @@ public class ActorForm {
 		this.agree = agree;
 	}
 
-	public ActorForm() {
-		super();
-		this.id = 0;
-		this.version = 0;
-		this.account = new AccountForm();
-	}
-
-	public ActorForm(final Actor actor) {
-		super();
-		this.id = actor.getId();
-		this.setName(actor.getName());
-		this.setSurname(actor.getSurname());
-		this.setEmail(actor.getEmail());
-		this.setPhone(actor.getPhone());
-		this.setAddress(actor.getAddress());
-		this.setAccount(new AccountForm(actor));
-		this.setAuthority(this.getAccount().getAuthority());
-		this.setUsername(actor.getUserAccount().getUsername());
-
-	}
 
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@Pattern(regexp = "^CUS-([012][1-9]|[3][01]|20)([0][1-9]|[1][0-2])\\d\\d-\\d{0,8}$") // "INC-MMDDYY-XXXXXXXX"
