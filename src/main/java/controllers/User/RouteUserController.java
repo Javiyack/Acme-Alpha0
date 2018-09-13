@@ -109,7 +109,8 @@ public class RouteUserController extends AbstractController {
         else
             try {
                 route = this.routeService.save(route);
-                result = new ModelAndView("redirect:/route/user/list.do");
+                result = this.createEditModelAndView(route);
+                result.addObject("info", "msg.commit.ok");
             } catch ( Throwable oops) {
                 if (oops.getMessage().startsWith("msg.")) {
                     return createMessageModelAndView(oops.getLocalizedMessage(), "/route/user/list.do");

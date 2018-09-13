@@ -75,22 +75,18 @@
 		style="margin-left: 260px; margin-top: 56px; padding: 0em 7% 0em 7%;">
 		<!-- Mensajes de error -->
 		<jstl:if test="${message != null}">
-			<ul class="w3-ul">
-				<li class="w3-display-container seccion  w3-flat-orange" style="padding: 0.5em 2em; margin: 0em 2em;">
+				<li class="w3-display-container seccion  w3-red" style="padding: 0.8em 2em; margin: 0em 1.5em;">
 				<spring:message code="${message}" /> <span
 					onclick="this.parentElement.style.display='none'"
 					class="w3-btn w3-transparent w3-display-right w3-padding">&times;</span>
 					</li>
-			</ul>
 		</jstl:if>
 		<jstl:if test="${info != null}">
-			<ul class="w3-ul">
-				<li class="w3-display-container seccion  w3-flat-orange" style="padding: 0.5em 2em; margin: 0em 2em;">
+				<li class="w3-display-container seccion  w3-amber" style="padding: 0.5em 2em; margin: 0em 1.5em;">
 				<spring:message code="${info}" /> <span
 					onclick="this.parentElement.style.display='none'"
 					class="w3-btn w3-transparent w3-display-right w3-padding">&times;</span>
 					</li>
-			</ul>
 		</jstl:if>
 
 		<!-- Titulo -->

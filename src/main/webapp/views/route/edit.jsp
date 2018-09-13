@@ -41,8 +41,8 @@
 <div class="form">
     <form:form action="${requestUri}" modelAttribute="route">
         <form:hidden path="id"/>
+        <form:hidden path="version"/>
         <form:hidden path="user"/>
-        <br>
         <div class="seccion w3-light-grey">
             <div class="row">
                 <div class="col-100">
@@ -53,24 +53,13 @@
                         <div class="col-25">
                             <acme:textbox code="label.name" path="name" readonly="${readonly}"/>
                             <acme:textbox code="label.length" path="length" readonly="${readonly}"/>
-                            <acme:textbox code="label.description" path="description" readonly="${readonly}"/>
+                            <acme:textarea code="label.description" path="description" readonly="${readonly}"
+                                           css="formTextArea w3-text-black"/>
                             <acme:textarea code="label.pictures" path="pictures"
                                            readonly="${readonly}" css="formTextArea collection w3-text-black"
                                            id="fotosPath"/>
                         </div>
                         <div class="col-75" <jstl:if test='${!readonly}'>id="dropbox" ondragover="return false" ondrop="myDrop(event)"</jstl:if>>
-
-                            <br/>
-                            <br/>
-                            <div id="fotos" style="margin-bottom: 0.2em;">
-                                <jstl:set var="count" scope="application" value="${0}"/>
-                                <jstl:forEach items="${route.pictures}" var="picture">
-                                    <jstl:set var="count" scope="application" value="${count + 1}"/>
-                                    <img src="${picture}" class="tableImg" onclick="currentSlide(${count})">
-                                </jstl:forEach>
-                            </div>
-
-
                             <!-- Carrusel se fotos  -->
                             <div class="carrusel">
                                 <div class="slideshow-container" id="carrusel">
@@ -85,11 +74,12 @@
                                 </div>
                             </div>
                             <br>
-                            <jstl:set var="count" scope="application" value="${0}"/>
-                            <div style="text-align: center" id="punto">
+
+                            <div id="fotos" style="margin-bottom: 0.2em;">
+                                <jstl:set var="count" scope="application" value="${0}"/>
                                 <jstl:forEach items="${route.pictures}" var="picture">
                                     <jstl:set var="count" scope="application" value="${count + 1}"/>
-                                    <span class="dot" onclick="currentSlide(${count})"></span>
+                                    <img src="${picture}" class="tableImg" onclick="currentSlide(${count})">
                                 </jstl:forEach>
                             </div>
                         </div>
