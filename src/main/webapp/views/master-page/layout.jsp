@@ -37,7 +37,7 @@
 <script type="text/javascript" src="scripts/w3.js"></script>
 <script type="text/javascript" src="scripts/acme.js"></script>
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -58,6 +58,7 @@
 <link rel="stylesheet" href="styles/cookie.css" type="text/css">
 <link rel="stylesheet" href="styles/topnav.css" type="text/css">
 <link rel="stylesheet" href="styles/acme.css" type="text/css">
+<link rel="stylesheet" href="styles/flatTable.css" type="text/css">
 
 <jsp:useBean id="date" class="java.util.Date" />
 
@@ -65,7 +66,7 @@
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 
-<body class="w3-flat-wet-asphalt">
+<body class="w3-flat-wet-asphalt" ondragover="return false;">
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="menu" />
 

@@ -18,6 +18,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.SafeHtml;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import security.UserAccount;
@@ -31,15 +32,16 @@ public abstract class Actor extends DomainEntity {
 	private String 		surname;
 	private String 		email;
 	private String 		phone; 			// Optional
-	private String 		address; 		// Optional	
+	private String 		picture; 			// Optional
+	private String 		address; 		// Optional
 	private Date 		registrationMoment;
-	
-	private Collection<String> phones;
+
 	//Relationships
 	private UserAccount userAccount;
 	
 	
 	@SafeHtml
+	@NotNull
 	public String getName() {
 		return this.name;
 	}
@@ -48,6 +50,7 @@ public abstract class Actor extends DomainEntity {
 		this.name = name;
 	}
 
+	@SafeHtml
 	public String getSurname() {
 		return this.surname;
 	}
@@ -65,6 +68,8 @@ public abstract class Actor extends DomainEntity {
 		this.email = email;
 	}
 
+	@SafeHtml
+	@Pattern(regexp = "^\\+?\\d{3,14}$")
 	public String getPhone() {
 		return this.phone;
 	}
@@ -102,16 +107,13 @@ public abstract class Actor extends DomainEntity {
 		this.registrationMoment = registrationMoment;
 	}
 
-	@NotNull
-	@Pattern(regexp = "^\\d{8}$")
-	@ElementCollection
-	public Collection<String> getPhones() {
-		return phones;
+
+	@URL
+	public String getPicture() {
+		return picture;
 	}
 
-	public void setPhones(Collection<String> phones) {
-		this.phones = phones;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
-
-
 }

@@ -116,6 +116,7 @@
 		<property name="registrationMoment" value="2018/09/01 10:25" />
 		<property name="address" value="C/ Suplicio 77" />
 		<property name="userAccount" ref="userAccountUser3" />
+
 	</bean>
 
 	
@@ -270,6 +271,7 @@
 		<property name="actor" ref="administrator1" />
 	</bean>
 
+
 	<bean id="custombox9" class="domain.Folder">
 		<property name="name" value="work" />
 		<property name="systemFolder" value="false" />
@@ -302,7 +304,7 @@
 
 	<!-- CONFIGURATION -->
 	<bean id="configuration" class="domain.Configuration">
-		<property name="companyName" value="Acme CRM" />
+		<property name="companyName" value="Acme Santiago" />
 		<property name="passKey" value="CUS-010100-00000001" />
 		<property name="logo" value="images/logo.png" />
 		<property name="defaultCurrency" value="EUR" />
@@ -322,9 +324,64 @@
 			</list>
 
 		</property>
+		<property name="difficultyLevels">
+			<list>
+				<value>EASY</value>
+				<value>MEDIUM</value>
+				<value>DIFFICULT</value>
+			</list>
+
+		</property>
 	</bean>
 
-	<!-- Message -->
+	<!-- Routes -->
 
+	<bean id="route1" class="domain.Route">
+		<property name="name" value="La Ruta" />
+		<property name="description" value="De las maravillas" />
+		<property name="length" value="00325.500" />
+		<property name="pictures">
+			<list>
+				<value></value>
+			</list>
+		</property>
+		<property name="user" ref="user1" />
+	</bean>
+
+	<bean id="route2" class="domain.Route">
+		<property name="name" value="De ruta a rota" />
+		<property name="description" value="Urta a la roteña" />
+		<property name="length" value="00420.110" />
+		<property name="pictures">
+			<list>
+				<value></value>
+			</list>
+		</property>
+		<property name="user" ref="user1" />
+	</bean>
+
+	<bean id="route3" class="domain.Route">
+		<property name="name" value="Sigueme" />
+		<property name="description" value="Si puedes... si, puedes." />
+		<property name="length" value="00155.760" />
+		<property name="pictures">
+			<list>
+				<value></value>
+			</list>
+		</property>
+		<property name="user" ref="user2" />
+	</bean>
+
+	<bean id="route4" class="domain.Route">
+		<property name="name" value="Tolfrio" />
+		<property name="description" value="Pa mi" />
+		<property name="length" value="00652.735" />
+		<property name="user" ref="user2" />
+		<property name="pictures">
+			<list>
+				<value></value>
+			</list>
+		</property>
+	</bean>
 
 </beans>

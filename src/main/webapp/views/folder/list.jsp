@@ -11,7 +11,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-<div class="seccion w3-light-green">
+<div class="seccion w3-light-grey">
 
 	<div class="w3-row">
 		<div class="w3-col w3-quarter">
@@ -19,7 +19,7 @@
 			<i class="w3-bar-item fa fa fa-folder-open-o w3-xxlarge"></i> <span
 				class="w3-xlarge" style="margin-bottom: 1em; margin-left: 0.5em;"><jstl:out
 					value="${folder.name}" /></span>
-			<ul class="w3-ul w3-card-4 w3-padding">
+			<ul class="w3-ul">
 				<jstl:forEach items="${folders}" var="subFolder">
 					<li class="menuItem w3-bar"
 						onclick="relativeRedir('folder/list.do?folderId=${subFolder.id}');">

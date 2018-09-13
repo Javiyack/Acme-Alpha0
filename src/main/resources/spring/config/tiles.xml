@@ -30,8 +30,10 @@
 		<value>/views/configuration/tiles.xml</value>
 		<value>/views/tabooWord/tiles.xml</value>
 		<value>/views/file/tiles.xml</value>
-
-
+		<value>/views/route/tiles.xml</value>
+		<value>/views/hike/tiles.xml</value>
+		<value>/views/chirp/tiles.xml</value>
+		<value>/views/comment/tiles.xml</value>
 
 	</util:list>
 

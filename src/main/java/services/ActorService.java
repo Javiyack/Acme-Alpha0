@@ -116,9 +116,9 @@ public class ActorService {
 
 		try {
 			userAccount = LoginService.getPrincipal();
-			Assert.notNull(userAccount, "msg.not.loged.block");
+			Assert.notNull(userAccount, "msg.not.logged.block");
 			result = this.findByUserAccount(userAccount);
-			Assert.notNull(result, "msg.not.loged.block");
+			Assert.notNull(result, "msg.not.logged.block");
 		} catch (final Throwable oops) {
 		}
 
@@ -171,7 +171,6 @@ public class ActorService {
 			logedActor.setEmail(actorForm.getEmail());
 			logedActor.setAddress(actorForm.getAddress());
 			logedActor.setPhone(actorForm.getPhone());
-			logedActor.setPhones(actorForm.getPhones());
 			logedActor.setRegistrationMoment(new Date());
 			this.validator.validate(actorForm, binding);
 			this.validator.validate(actorForm.getAccount(), binding);
@@ -189,14 +188,13 @@ public class ActorService {
 			this.validator.validate(actorForm, binding);
 			final String formPass = encoder.encodePassword(actorForm.getAccount().getPassword(), null);
 			logedActor = this.findByPrincipal();
-			Assert.notNull(logedActor, "msg.not.loged.block");
+			Assert.notNull(logedActor, "msg.not.logged.block");
 			if (!binding.hasErrors()) {
 				logedActor.setName(actorForm.getName());
 				logedActor.setSurname(actorForm.getSurname());
 				logedActor.setEmail(actorForm.getEmail());
 				logedActor.setAddress(actorForm.getAddress());
 				logedActor.setPhone(actorForm.getPhone());
-				logedActor.setPhones(actorForm.getPhones());
 			} // Si ha cambiado algún parámetro del Authority (Usuario, password)
 			if (!actorForm.getAccount().getUsername().equals(logedActor.getUserAccount().getUsername())) {
 
@@ -275,7 +273,7 @@ public class ActorService {
 
 	public boolean activation(int actorId) {
 		final Actor ppal = this.findByPrincipal();
-		Assert.notNull(ppal, "msg.not.loged.block");
+		Assert.notNull(ppal, "msg.not.logged.block");
 		Assert.notNull(ppal instanceof Administrator, "msg.not.owned.block");
 		
 		Actor actror = this.actorRepository.findOne(actorId);

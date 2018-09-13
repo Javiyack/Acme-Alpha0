@@ -92,7 +92,7 @@ public class PostBoxService {
 	public Collection<PostBox> findAllByActor() {
 		Actor actor;
 		actor = this.actorService.findByPrincipal();
-		Assert.notNull(actor, "msg.not.loged.block");
+		Assert.notNull(actor, "msg.not.logged.block");
 		return postBoxRepository.findAllByActor(actor.getId());
 	}
 

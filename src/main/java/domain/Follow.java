@@ -1,32 +1,20 @@
 
 package domain;
 
-import java.util.Date;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {
+		"follower_id", "followed_id"
+}))
 public class Follow extends DomainEntity {
 
 	//Relationships
-	private Actor	recipient;
-	private Actor	sender;
-
+	private User follower;
+	private User followed;
 
 
 	//Constructor
@@ -37,22 +25,22 @@ public class Follow extends DomainEntity {
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Actor getRecipient() {
-		return this.recipient;
+	public User getFollower() {
+		return this.follower;
 	}
 
-	public void setRecipient(final Actor recipient) {
-		this.recipient = recipient;
+	public void setFollower(final User follower) {
+		this.follower = follower;
 	}
 
 	@Valid
 	@NotNull
 	@ManyToOne(optional = false)
-	public Actor getSender() {
-		return this.sender;
+	public User getFollowed() {
+		return this.followed;
 	}
 
-	public void setSender(final Actor sender) {
-		this.sender = sender;
+	public void setFollowed(final User followed) {
+		this.followed = followed;
 	}
 }

@@ -1,95 +1,86 @@
 
 package domain;
 
-import java.util.Collection;
-import java.util.Date;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
-import org.springframework.format.annotation.DateTimeFormat;
+import utilities.URLCollection;
+
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(indexes = { @Index(columnList = "name, description") })
+@Table(indexes = {@Index(columnList = "name, description")})
 public class Route extends DomainEntity {
 
 
-	private String name;
-	private String description;
+    private String name;
+    private String description;
 
-	private Integer lenght;
-	
-	private Collection<String> pictures;
+    private Double length;      // En Km. tres decimales
 
-	// Relationships
-	private Actor owner;
-	// Relationships
-	
+    private Collection<String> pictures;
 
-	@Valid
-	@NotNull
-	@ManyToOne(optional = false)
-	public Actor getOwner() {
-		return owner;
-	}
+    // Relationships
+    private User user;
+    // Relationships
 
-	public void setOwner(Actor owner) {
-		this.owner = owner;
-	}
 
-	@NotBlank
-	@SafeHtml
-	public String getName() {
-		return this.name;
-	}
+    @Valid
+    @NotNull
+    @ManyToOne(optional = false)
+    public User getUser() {
+        return user;
+    }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@NotBlank
-	public String getDescription() {
-		return description;
-	}
+    @NotBlank
+    @SafeHtml
+    public String getName() {
+        return this.name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-	public Integer getLenght() {
-		return lenght;
-	}
+    @SafeHtml(whitelistType = WhiteListType.NONE)
+    @NotBlank
+    public String getDescription() {
+        return description;
+    }
 
-	public void setLenght(Integer lenght) {
-		this.lenght = lenght;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@ElementCollection
-	@NotNull
-	public Collection<String> getPictures() {
-		return pictures;
-	}
 
-	public void setPictures(Collection<String> pictures) {
-		this.pictures = pictures;
-	}
+    @NotNull
+    public Double getLength() {
+        return length;
+    }
 
-	
+    public void setLength(Double length) {
+        this.length = length;
+    }
+
+    @NotNull
+    @ElementCollection
+    public Collection<String> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Collection<String> pictures) {
+        this.pictures = pictures;
+    }
+
 
 }

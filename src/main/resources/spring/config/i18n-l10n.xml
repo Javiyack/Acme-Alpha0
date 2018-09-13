@@ -32,6 +32,10 @@
 		<value>/views/configuration/messages</value>
 		<value>/views/tabooWord/messages</value>
 		<value>/views/file/messages</value>
+		<value>/views/route/messages</value>
+		<value>/views/hike/messages</value>
+		<value>/views/chirp/messages</value>
+		<value>/views/comment/messages</value>
 
 
 	</util:list>

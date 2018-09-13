@@ -11,7 +11,8 @@ body {
 }
 
 li.menuItem:hover{
-	color: white;
+	color: #223850;
+	cursor: pointer;
 }
 
 .logo {
@@ -276,7 +277,13 @@ select {
 	padding: 0px;
 }
 
-.iButton{	
+.iButton{
+	cursor: pointer;
+}
+
+.iButton{
+	margin: 0px;
+	padding: 0px;
 	cursor: pointer;
 }
 
@@ -306,8 +313,8 @@ select {
 
 .tableImg {
 	text-align: center;
-	max-width: 10em;
-	max-height: 8em;
+	min-height: 5em;
+	max-height: 5em;
 	border-radius: 9px;
 	background-color: rgba(255, 255, 255, 0.2);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
@@ -357,9 +364,10 @@ fieldset {
 }
 
 legend {
-	font-weight: bold;
+	font-size: 2em;
+	font-weight: bolder;
 	color: #133066;
-	margin-bottom: 5px !important;
+	margin-bottom: 1em !important;
 }
 
 h4 {
@@ -457,6 +465,11 @@ h5 {
 }
 
 /* Carrusel de fotos */
+.carrusel{
+	background-color: #1a282f;
+}
+
+
 * {
 	box-sizing: border-box
 }
@@ -467,7 +480,7 @@ body {
 }
 
 .mySlides {
-	display: none
+	display: none;
 }
 
 img {
@@ -476,7 +489,7 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-	max-width: 600px;
+	max-width: 800px;
 	position: relative;
 	margin: auto;
 }
@@ -484,23 +497,23 @@ img {
 /* Next & previous buttons */
 .slideshow-container .prev,.slideshow-container .next {
 	cursor: pointer;
-	max-width:7em;
 	position: absolute;
 	top: 50%;
 	width: auto;
-	padding: 16px;
+	padding: 12px;
 	margin-top: -22px;
 	color: white;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 2em;
 	transition: 0.4s ease;
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 12px 12px 0;
+	z-index: 2;
 }
 
 /* Position the "next button" to the right */
 .next {
 	right: 0;
-	border-radius: 3px 0 0 3px;
+	border-radius: 12px 0 0 12px !important;
 }
 
 /* On hover, add a black background color with a little bit see-through */
@@ -587,12 +600,25 @@ to {
 	border-color: #6d8292;
 	border-radius: 5px;
 }
+.collection{
+	padding: 8px;
+	display: block;
+	border: 1px solid #ccc;
+	min-width: 100%;
+	height: 40px;
+	min-height: 40px;
+	max-width: 100%;
+	max-height: 250px;
+	resize: vertical;
+	border-radius: 3px;
+}
 
 .seccion {
-	margin-left: 1em;
-	margin-right: 1em;
+	margin-top: 1.5em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
 	margin-bottom: 0.4em;
-	padding: 1.5em 2.5em;
+	padding: 2em 2em 2em 2em;
 	/*border: 1px solid;*/
 	border-color: #6d8292;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0

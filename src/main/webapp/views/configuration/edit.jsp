@@ -19,8 +19,10 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<div class="seccion w3-flat-pomegranate">
-
+<div class="seccion w3-light-grey">
+    <legend>
+        <spring:message code="label.configuration"/>
+    </legend>
 	<form:form requestUri="configuration/administrator/edit.do"
 		modelAttribute="configuration">
 

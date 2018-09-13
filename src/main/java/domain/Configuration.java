@@ -25,6 +25,7 @@ public class Configuration extends DomainEntity {
 	private String	logo;
 	private String	defaultCurrency;
 	private Collection<String> folderNames;
+	private Collection<String> difficultyLevels;
 	private String	welcomeMessageEs;
 	private String	welcomeMessageEn;
 	private double	iva;
@@ -126,4 +127,13 @@ public class Configuration extends DomainEntity {
 		this.hourPrice = hourPrice;
 	}
 
+	@ElementCollection
+	@NotNull
+	public Collection<String> getDifficultyLevels() {
+		return difficultyLevels;
+	}
+
+	public void setDifficultyLevels(Collection<String> difficultyLevels) {
+		this.difficultyLevels = difficultyLevels;
+	}
 }

@@ -7,12 +7,18 @@ public class Constant {
 		EUR,
 		USD
 }
-	public enum requestStatus {
+	public static enum requestStatus {
 		PENDING,
 		REJECTED,
 		ACCEPTED,
 		CANCELLED
-}
+	}
+
+	public static enum difficultyLevels {
+		EASY,
+		MEDIUM,
+		DIFFICULT
+	}
 
 	// Monedas
 	public static final String	CURRENCY_EURO						= "EUR";

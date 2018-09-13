@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import domain.Actor;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.Collection;
 
@@ -25,12 +26,11 @@ public class ActorForm {
 	private String newPassword;
 	private String confirmPassword;
 	private String authority;
-	private String passKey;
+	private String picture;
 	private boolean agree;
 	private AccountForm account;
 	private int id;
 	private int version;
-	private Collection<String> phones;
 
 
 
@@ -51,7 +51,6 @@ public class ActorForm {
 		this.setSurname(actor.getSurname());
 		this.setEmail(actor.getEmail());
 		this.setPhone(actor.getPhone());
-		this.setPhones(actor.getPhones());
 		this.setAddress(actor.getAddress());
 		this.setAccount(new AccountForm(actor));
 		this.setAuthority(this.getAccount().getAuthority());
@@ -69,12 +68,6 @@ public class ActorForm {
 	}
 
 
-	public Collection<String> getPhones() {
-		return phones;
-	}
-	public void setPhones(Collection<String> phones) {
-		this.phones = phones;
-	}
 
 	public String getUsername() {
 		return username;
@@ -129,17 +122,6 @@ public class ActorForm {
 		this.agree = agree;
 	}
 
-
-	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@Pattern(regexp = "^CUS-([012][1-9]|[3][01]|20)([0][1-9]|[1][0-2])\\d\\d-\\d{0,8}$") // "INC-MMDDYY-XXXXXXXX"
-	public String getPassKey() {
-		return passKey;
-	}
-
-	public void setPassKey(String passKey) {
-		this.passKey = passKey;
-	}
-
 	@NotBlank
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getName() {
@@ -180,6 +162,8 @@ public class ActorForm {
 		this.phone = phone;
 	}
 
+
+	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getAddress() {
 		return this.address;
 	}
@@ -205,4 +189,13 @@ public class ActorForm {
 	}
 
 
+	@URL
+	@SafeHtml(whitelistType = WhiteListType.NONE)
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 }

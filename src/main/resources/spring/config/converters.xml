@@ -27,8 +27,12 @@
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.FolderToStringConverter" />
 		<bean class="converters.ConfigurationToStringConverter" />
-		<bean class="converters.TabooWordToStringConverter" />		
-		
+		<bean class="converters.TabooWordToStringConverter" />
+		<bean class="converters.RouteToStringConverter" />
+		<bean class="converters.HikeToStringConverter" />
+		<bean class="converters.FollowToStringConverter" />
+		<bean class="converters.CommentToStringConverter" />
+
 		<bean class="converters.StringToActorConverter" />
 		<bean class="converters.StringToAdministratorConverter" />
 		<bean class="converters.StringToAuthorityConverter" />
@@ -38,9 +42,14 @@
 		<bean class="converters.StringToFolderConverter" />
 		<bean class="converters.StringToConfigurationConverter" />
 		<bean class="converters.StringToTabooWordConverter" />
-			
-			
-			
+		<bean class="converters.StringToRouteConverter" />
+		<bean class="converters.StringToHikeConverter" />
+		<bean class="converters.StringToFollowConverter" />
+		<bean class="converters.StringToChirpConverter" />
+		<bean class="converters.StringToCommentConverter" />
+
+
+
 	</util:list>
 	
 </beans>

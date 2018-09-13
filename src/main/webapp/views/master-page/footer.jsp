@@ -20,9 +20,10 @@
 </div>
 <div id="barraaceptacion">
     <div class="inner">
-    	<spring:message code="term.cookie.banner"/>
+    	<div class="seccion w3-flat-asbestos"><spring:message code="term.cookie.banner"/>
         <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> | 
         <a href="term/cookies.do"  class="info"><spring:message code="term.cookie"/></a>
+    </div>
     </div>
 </div>
 

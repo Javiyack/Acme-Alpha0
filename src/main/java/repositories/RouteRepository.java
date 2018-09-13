@@ -11,13 +11,13 @@ import java.util.Collection;
 public interface RouteRepository extends JpaRepository<Route, Integer> {
 
 
-	@Query("select r from Route r where r.owner.id=?1")
+	@Query("select r from Route r where r.user.id=?1")
 	Collection<Route> findByOwner(Integer ownerId);
 
 
 	@Query("select r from Route r where r.description like %?1%")
 	Collection<Route> findByKeyWord(String keyWord);
 
-	@Query("select r from Route r where r.owner.id=?1")
+	@Query("select r from Route r where r.user.id=?1")
 	Collection<Route> findByUserId(int id);
 }

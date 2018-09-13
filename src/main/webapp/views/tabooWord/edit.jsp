@@ -9,7 +9,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-
+<div class="seccion w3-light-grey">
 <form:form action="tabooWord/administrator/edit.do"
 	modelAttribute="tabooWord">
 
@@ -25,8 +25,6 @@
 		<acme:submit name="delete" code="tabooWord.delete" css="formButton toLeft" />&nbsp;
 	</jstl:if>
 	
-     <acme:cancel url="/tabooWord/administrator/list.do" code="tabooWord.cancel" css="formButton toLeft" /> 
-    
-	<br />
-
+     <acme:cancel url="/tabooWord/administrator/list.do" code="tabooWord.cancel" css="formButton toLeft" />
 </form:form>
+</div>

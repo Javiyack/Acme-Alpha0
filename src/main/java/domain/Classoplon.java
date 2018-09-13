@@ -15,7 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "name",
+@Table(indexes = {@Index(columnList = "name, body")},
+		uniqueConstraints = @UniqueConstraint(columnNames = { "name",
 		"parent_id" }))
 public class Classoplon extends DomainEntity {
 

@@ -24,22 +24,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <spring:message code="msg.delete.confirmation" var="deleteConfirmation" />
-<ul class="w3-ul w3-card-4 w3-light-grey">
+<div class="seccion w3-light-grey">
+	<legend>
+		<spring:message code="label.tabooWords"/>
+	</legend><ul class="w3-ul">
 
 	<jstl:forEach items="${tabooWords}" var="row">
-		<jstl:set var="deleteUrl"
-			value="tabooWord/administrator/delete.do?tabooWordId=${row.id}" />
-		<li class="w3-display-container"><jstl:out value="${row.text}" />
-			<a href="tabooWord/administrator/edit.do?tabooWordId=${row.id}"
-			class="w3-button w3-transparent w3-display-middle"> <spring:message
-					code="label.edit" />
-		</a> <span
-			onclick="javascript: showConfirmationAlert('${deleteConfirmation}', '${row.text}', '${deleteUrl}');"
-			class="w3-button w3-transparent w3-display-right"> &times; </span></li>
+		<jstl:set var="deleteUrl" value="tabooWord/administrator/delete.do?tabooWordId=${row.id}" />
+		<li class="w3-display-container iButton w3-hover-white">
+			<div onclick="relativeRedir('tabooWord/administrator/edit.do?tabooWordId=${row.id}');">
+				<jstl:out value="${row.text}" />
+			</div>
+			<span onclick="javascript: showConfirmationAlert('${deleteConfirmation}', '${row.text}', '${deleteUrl}');"
+			class="w3-button w3-transparent w3-display-right"> &times; </span>
+		</li>
 	</jstl:forEach>
 </ul>
+	<hr>
+	<acme:button url="tabooWord/administrator/create.do"
+				 text="tabooWord.create" css="formButton toLeft" />
 
-<br />
-<acme:button url="tabooWord/administrator/create.do"
-	text="tabooWord.create" css="formButton toLeft" />
+	<br />
+</div>
+
 

@@ -30,15 +30,36 @@
 <%@ attribute name="format" required="false"%>
 <%@ attribute name="style" required="false"%>
 <%@ attribute name="css" required="false"%>
+<%@ attribute name="rowUrl" required="false"%>
+<%@ attribute name="icon" required="false"%>
 
 <%-- Definition --%>
 <jstl:if test="${format != null}">
 	<spring:message code="${format }" var="formatVar" />
 </jstl:if>
+
 <spring:message code="${title }" var="titleVar" />
-<display:column property="${property }" title="${ titleVar}" 
-				sortable="${sortable }" class="${css}" format="${formatVar}" 
-				style="${style}"/> 
+
+<jstl:if test="${rowUrl==null}">
+    <display:column property="${property }" title="${ titleVar}"
+                    sortable="${sortable }" class="${css}" format="${formatVar}" style="${style}">
+    </display:column>
+</jstl:if>
+<jstl:if test="${rowUrl!=null}">
+    <display:column  title="${ titleVar}"
+                    sortable="${sortable }" class="${css}" format="${formatVar}" style="${style}">
+        <jstl:if test="${rowUrl!=null}">
+
+            <div class="iButton" onclick="relativeRedir('${rowUrl}');">
+                <jstl:if test="${icon!=null}"><i
+                        class="${icon}"></i></jstl:if>
+                <jstl:if test="${icon==null}"><jstl:out value="${property}"/></jstl:if>
+
+            </div>
+        </jstl:if>
+    </display:column>
+</jstl:if>
+
 
 
 
