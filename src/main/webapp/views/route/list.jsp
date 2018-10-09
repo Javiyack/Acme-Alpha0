@@ -28,13 +28,16 @@
     <legend>
         <spring:message code="label.routes"/>
     </legend>
+
     <jstl:if test="${!routes.isEmpty()}">
+        <form:form action="${requestUri}" method="GET">
         <spring:message code="pagination.size"/>
         <input hidden="true" name="word" value="${word}">
         <input hidden="true" name="actorId" value="${route.id}">
         <input type="number" name="pageSize" min="1" max="100"
                value="${pageSize}">
         <input type="submit" value=">">
+    </form:form>
     </jstl:if>
     <div style="overflow-x:auto;">
         <display:table pagesize="${pageSize}"

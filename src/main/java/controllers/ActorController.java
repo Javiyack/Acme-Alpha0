@@ -55,7 +55,7 @@ public class ActorController extends AbstractController {
         ModelAndView result;
 
         final Actor actor;
-        actor = this.actorService.findOne(actorId);
+        actor = this.actorService.findOneIfActive(actorId);
         Collection<Route> routes = routeService.findByUserId(actorId);
         result = new ModelAndView("actor/display");
         result.addObject("actorForm", actor);
@@ -65,25 +65,6 @@ public class ActorController extends AbstractController {
         return result;
     }
 
-    // Activation  -----------------------------------------------------------
-    @RequestMapping(value = "/activate", method = RequestMethod.GET)
-    public ModelAndView activation(@RequestParam final int actorId, final Integer pageSize, final Integer word) {
-        ModelAndView result;
-
-        try {
-            this.actorService.activation(actorId);
-
-        } catch (Throwable oops) {
-            if (oops.getMessage().startsWith("msg.")) {
-                return createMessageModelAndView(oops.getLocalizedMessage(), "/");
-            } else {
-                return this.createMessageModelAndView("panic.message.text", "/");
-            }
-        }
-        result = new ModelAndView("redirect:/actor/list.do");
-        result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
-        return result;
-    }
 
     // Create ---------------------------------------------------------------
 
@@ -166,12 +147,9 @@ public class ActorController extends AbstractController {
     protected ModelAndView createEditModelAndView(final ActorForm model, final String message) {
         final ModelAndView result;
         final Collection<Authority> permisos = Authority.listAuthorities();
-		/*
-			final Authority authority = new Authority();
-			authority.setAuthority(Authority.ADMINISTRATOR);
-			permisos.remove(authority);
-		 */
-
+        final Authority authority = new Authority();
+        authority.setAuthority(Authority.ADMINISTRATOR);
+        permisos.remove(authority);
         result = new ModelAndView("actor/create");
         result.addObject("actorForm", model);
         result.addObject("requestUri", "actor/create.do");

@@ -247,7 +247,7 @@ function myDrop(evt) {
     evt.preventDefault();
     var imageUrl = evt.dataTransfer.getData('text/html');
     var url = $(imageUrl).attr("src");
-    var elemento = ('<div class="mySlides"><img src="' + url + '" style="width: 100%"></div>');
+    var elemento = ('<div class="mySlides"><img src="' + url + '" class="w3-border w3-card-4 marco" style="width: 100%"></div>');
     var imagen = '<img src="' + url + '" class="tableImg">';
 
     if (document.getElementById("fotosPath").innerHTML.length > 0) {
@@ -316,11 +316,14 @@ function checkEdition() {
 function showUserAccount() {
 
     var changedPassword = document.getElementById("changePassword");
+    var photoCard = document.getElementById("photoCard");
     if (changedPassword.style.display == "block") {
         changedPassword.style.display = "none";
+        photoCard.style.display = "block";
         document.getElementById("save").className = "formButton toLeft";
     } else {
         changedPassword.style.display = "block"
+        photoCard.style.display = "none";
         checkEdition();
     }
 }

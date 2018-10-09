@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import domain.InnKeeper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,16 @@ public class ActorService {
 		Actor result;
 
 		result = this.actorRepository.findOne(actorId);
+		Assert.notNull(result);
+
+		return result;
+	}
+	public Actor findOneIfActive(final int actorId) {
+		Assert.isTrue(actorId != 0);
+
+		Actor result;
+
+		result = this.actorRepository.findOneIfActive(actorId);
 		Assert.notNull(result);
 
 		return result;
@@ -152,10 +163,13 @@ public class ActorService {
 			actorForm.getAccount().setNewPassword(actorForm.getAccount().getPassword());
 			useraccount = new UserAccount();
 			switch (actorForm.getAccount().getAuthority()) {
-			case Authority.USER:
-				logedActor = new User();
-				break;
-			case Authority.ADMINISTRATOR:
+				case Authority.USER:
+					logedActor = new User();
+					break;
+				case Authority.INNKEEPER:
+					logedActor = new InnKeeper();
+					break;
+				case Authority.ADMINISTRATOR:
 				logedActor = new Administrator();
 				break;
 			default:
@@ -172,6 +186,7 @@ public class ActorService {
 			logedActor.setAddress(actorForm.getAddress());
 			logedActor.setPhone(actorForm.getPhone());
 			logedActor.setRegistrationMoment(new Date());
+			logedActor.setPicture(actorForm.getPicture());
 			this.validator.validate(actorForm, binding);
 			this.validator.validate(actorForm.getAccount(), binding);
 			if (!binding.hasErrors()) {
@@ -195,6 +210,7 @@ public class ActorService {
 				logedActor.setEmail(actorForm.getEmail());
 				logedActor.setAddress(actorForm.getAddress());
 				logedActor.setPhone(actorForm.getPhone());
+				logedActor.setPicture(actorForm.getPicture());
 			} // Si ha cambiado algún parámetro del Authority (Usuario, password)
 			if (!actorForm.getAccount().getUsername().equals(logedActor.getUserAccount().getUsername())) {
 
@@ -274,7 +290,7 @@ public class ActorService {
 	public boolean activation(int actorId) {
 		final Actor ppal = this.findByPrincipal();
 		Assert.notNull(ppal, "msg.not.logged.block");
-		Assert.notNull(ppal instanceof Administrator, "msg.not.owned.block");
+		Assert.isTrue(ppal instanceof Administrator, "msg.not.owned.block");
 		
 		Actor actror = this.actorRepository.findOne(actorId);
 		Assert.notNull(ppal, "msg.not.found.error");

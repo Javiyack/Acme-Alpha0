@@ -12,29 +12,19 @@
 <tiles-definitions>
 
 	<definition name="tabooWord/administrator/list" extends="master.page">
-		<put-attribute name="title" value="Listado de palabras tabú" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="/views/tabooWord/list.jsp" />
 	</definition>
 
-	<definition name="tabooWord/administrator/create"
-		extends="master.page">
+	<definition name="tabooWord/administrator/create" extends="master.page">
 		<put-attribute name="title" value="Crear palabra tabú" />
 		<put-attribute name="body" value="/views/tabooWord/edit.jsp" />
 	</definition>
 
 	<definition name="tabooWord/administrator/edit" extends="master.page">
-		<put-attribute name="title" value="Editar palabra tabú" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="/views/tabooWord/edit.jsp" />
 	</definition>
-	
-	<definition name="tender/administrator/list" extends="master.page">
-		<put-attribute name="title" value="Listado de Concursos con Palabras Tabú" />
-		<put-attribute name="body" value="/views/tender/list.jsp" />
-	</definition>
-	
-	<definition name="offer/administrator/list" extends="master.page">
-		<put-attribute name="title" value="Listado de Ofertas con Palabras Tabú" />
-		<put-attribute name="body" value="/views/offer/list.jsp" />
-	</definition>
+
 
 </tiles-definitions>

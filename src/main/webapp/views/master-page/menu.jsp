@@ -23,17 +23,13 @@
                              var="permiso"/>
     <jstl:set var="rol" value="${fn:toLowerCase(permiso)}"/>
 </security:authorize>
-
-
 <!-- Menu and banner usually + "$") -->
 <!-- Sidebar/menu -->
-
 <nav
-        class="w3-sidebar w3-collapse w3-flat-midnight-blue w3-animate-left sombra"
+        class="w3-sidebar w3-collapse w3-flat-midnight-blue sombra"
         style="z-index: 3; width: 260px;" id="mySidebar">
 
     <br>
-
     <div class="w3-container w3-row">
         <div class="w3-col s4">
             <security:authorize access="isAuthenticated()">
@@ -67,51 +63,43 @@
                 class="fa fa-diamond fa-fw"></i>  <spring:message
                 code="label.routes"/>
         </a>
-        <a href="actor/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
-        <security:authorize access="isAuthenticated()">
+        <security:authorize access="isAnonymous()">
+            <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
 
         </security:authorize>
 
         <security:authorize access="hasRole('USER')">
-        <a href="route/user/list.do"
-           class="w3-bar-item w3-button w3-padding w3-xlarge">
-            <i class="material-icons" style="font-size:36px">directions_walk</i> <spring:message
-                code="label.my.routes"/>
-        </a>
-        <a href="chirp/user/list.do"
-           class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-podcast fa-fw"></i>  <spring:message
-                code="label.chirp"/>
-        </a>
-        <a href="chirp/user/stream.do"
-           class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-podcast fa-fw"></i>  <spring:message
-                code="label.chirp"/>
-        </a>
-        <a href="user/user/list.do"
-           class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-group fa-fw"></i>  <spring:message
-                code="label.stream"/>
-        </a>
-        <a href="follow/user/list.do"
-           class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-address-book-o fa-fw"></i>  <spring:message
-                code="label.follow"/>
-        </a>
-    </security:authorize>
+        <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
+
+            <a href="route/user/list.do"
+               class="w3-bar-item w3-button w3-padding w3-xlarge">
+                <i class="fa fa-blind fa-fw w3-xxlarge"></i><spring:message
+                    code="label.my.routes"/>
+            </a>
+            <a href="chirp/user/list.do"
+               class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                    class="fa fa-podcast fa-fw"></i>  <spring:message
+                    code="label.chirp"/>
+            </a>
+            <a href="chirp/user/stream.do"
+               class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                    class="fa fa-bell-o fa-fw"></i>  <spring:message
+                    code="label.chirp"/> </a>
+        </security:authorize>
         <security:authorize access="hasRole('ADMINISTRATOR')">
+            <a href="user/administrator/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
             <a href="configuration/administrator/edit.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
                     class="fa fa-cog fa-fw"></i>  Settings </a>
             <a href="tabooWord/administrator/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
                     class="fa fa-cog fa-fw"></i>  <spring:message
                     code="label.tabooWords"/> </a>
-
-
         </security:authorize>
-        <security:authorize access="isAnonymous()">
-
-
+        <security:authorize access="hasRole('INNKEEPER')">
+            <a href="/inn/innkeeper/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge">
+                <i class="fa fa-home fa-fw"></i>  <spring:message code="label.inns"/> </a>
         </security:authorize>
         <br>
         <br>

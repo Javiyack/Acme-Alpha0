@@ -2,6 +2,7 @@
 package controllers.InnKeeper;
 
 import controllers.AbstractController;
+import domain.Inn;
 import domain.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.RouteService;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -23,7 +23,7 @@ public class InnInnKeeperController extends AbstractController {
     // Supporting services -----------------------------------------------------
 
     @Autowired
-    private RouteService routeService;
+    private InnService InnService;
 
     // Constructors -----------------------------------------------------------
 
@@ -33,18 +33,18 @@ public class InnInnKeeperController extends AbstractController {
 
     // List ------------------------------------------------------------------
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(final Integer userId, final Integer pageSize) {
+    public ModelAndView list(Integer pageSize) {
         ModelAndView result;
-        final Collection<Route> routes;
+        final Collection<Inn> inns;
         if (userId != null) {
-            routes = this.routeService.findByUserId(userId);
+            inns = this.InnService.findByUserId(userId);
 
         } else {
-            routes = this.routeService.findAll();
+            inns = this.InnService.findAll();
 
         }
         result = new ModelAndView("route/list");
-        result.addObject("routes", routes);
+        result.addObject("routes", inns);
         result.addObject("requestUri", "route/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
@@ -56,7 +56,7 @@ public class InnInnKeeperController extends AbstractController {
         ModelAndView result;
 
         try {
-            final Route route = this.routeService.findOne(routeId);
+            final Route route = this.InnService.findOne(routeId);
             Assert.notNull(route, "msg.not.found.resource");
             result = new ModelAndView("route/display");
             result.addObject("route", route);
@@ -77,7 +77,7 @@ public class InnInnKeeperController extends AbstractController {
     @RequestMapping("/create")
     public ModelAndView create() {
         ModelAndView result;
-        final Route route = routeService.create();
+        final Route route = InnService.create();
         result = this.createEditModelAndView(route);
         return result;
     }
@@ -88,7 +88,7 @@ public class InnInnKeeperController extends AbstractController {
         ModelAndView result;
 
         try {
-            final Route route = this.routeService.findOne(routeId);
+            final Route route = this.InnService.findOne(routeId);
             Assert.notNull(route, "msg.not.found.resource");
             result = new ModelAndView("route/edit");
             result.addObject("route", route);
@@ -114,7 +114,7 @@ public class InnInnKeeperController extends AbstractController {
             result = this.createEditModelAndView(route);
         else
             try {
-                this.routeService.save(route);
+                this.InnService.save(route);
                 result = new ModelAndView("redirect:/route/list.do");
             } catch (final Throwable oops) {
                 if (oops.getCause().getCause() != null

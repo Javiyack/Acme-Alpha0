@@ -20,7 +20,7 @@
 
             <div class="row">
                 <!-- Datos Personales-->
-                <div class="col-75">
+                <div class="col-60">
 
                     <legend>
                         <spring:message code="actor.personal.data"/>
@@ -42,19 +42,16 @@
                                           readonly="${!edition}"/>
                         </div>
                         <div class="col-50">
-                            <acme:textbox code="actor.phone" path="phone"
+                            <acme:textbox code="label.phone" path="phone"
                                           readonly="${!edition}"/>
+
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-50">
-                            <acme:textbox code="label.phone" path="phone"
-                                          readonly="${!edition}"/>
-                        </div>
-                        <div class="col-50">
+                        <div class="col-100">
                             <acme:textbox code="label.picture" path="picture"
-                                           readonly="${!edition}"/>
+                                          readonly="${!edition}"/>
                         </div>
                     </div>
 
@@ -66,9 +63,22 @@
                     </div>
                 </div>
 
+                <jstl:if test="${display}">
+                    <div class="col-40">
+                        <legend class="hideText">
+                            <spring:message code="label.picture"/>
+                        </legend>
+                        <div class="w3-card-4" Style="margin-top:2em;">
+                            <img src="${actorForm.picture}" alt="${actorForm.picture}" Style="width:100%">
+                            <div class="w3-container">
+                                <h4><b>${actorForm.userAccount.username}</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                </jstl:if>
                 <!-- Datos de la cuenta-->
                 <jstl:if test="${edition}">
-                    <div class="col-25">
+                    <div class="col-40">
                         <jstl:if test="${creation}">
                             <legend>
                                 <spring:message code="label.userAccount"/>
@@ -99,8 +109,18 @@
                                 <i class="fa fa-eye fa-fw"></i>  <spring:message
                                     code="actor.authority.${actorForm.account.authority}"/>
                             </legend>
+                            <div id="photoCard">
+                                <div class="col-40">
+                                    <div class="w3-card-4" Style="margin-top:2em;">
+                                        <img src="${actorForm.picture}" alt="${actorForm.picture}" Style="width:100%">
+                                        <div class="w3-container">
+                                            <h4><b>${actorForm.username}</b></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="changePassword" style="display: none;">
-                                <div class="col-25">
+                                <div class="col-33">
                                     <acme:textbox code="actor.username" path="username"
                                                   css="formInput"/>
                                     <acme:password code="label.userAccount.oldPassword"
@@ -119,12 +139,12 @@
                 </jstl:if>
             </div>
         </div>
-
+        <jstl:if test="${display}">
         <!-- ROUTES -->
 
-        <jstl:set value="${actorForm.id}" var="userId" />
+        <jstl:set value="${actorForm.id}" var="userId"/>
         <%@ include file="/views/route/list.jsp" %>
-
+        </jstl:if>
 
         <jstl:if test="${edition}">
             <div class="seccion w3-light-grey">

@@ -4,18 +4,18 @@ package domain;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {
-		"follower_id", "followed_id"
-}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"follower_id", "followed_id"}))
 public class Follow extends DomainEntity {
 
 	//Relationships
 	private User follower;
 	private User followed;
 
+	private Date since;
 
 	//Constructor
 	public Follow() {
@@ -42,5 +42,13 @@ public class Follow extends DomainEntity {
 
 	public void setFollowed(final User followed) {
 		this.followed = followed;
+	}
+
+	public Date getSince() {
+		return since;
+	}
+
+	public void setSince(Date since) {
+		this.since = since;
 	}
 }

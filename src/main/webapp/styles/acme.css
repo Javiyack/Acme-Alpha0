@@ -233,7 +233,7 @@ select {
 	border-radius: 3px;
 }
 .imgCentered {
-    
+
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -315,12 +315,18 @@ select {
 	text-align: center;
 	min-height: 5em;
 	max-height: 5em;
-	border-radius: 9px;
+	border-radius: 1px;
 	background-color: rgba(255, 255, 255, 0.2);
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 	box-sizing: border-box;
+	border: 3px solid white!important;
 	margin: auto;
+}
+.marco{
+	border: 12px solid white!important;
+
+    border-radius: 3px;
 }
 
 .displayImg {
@@ -344,14 +350,14 @@ select {
 	margin: auto;
 	border: 0px;
 	padding: 5%;
-	
+
 }
 .dashboardChart {
 	width: 50%;
 	height: 100%;
 	margin: auto;
-	padding: 0px; 
-	
+	padding: 0px;
+
 }
 
 fieldset {
@@ -364,10 +370,14 @@ fieldset {
 }
 
 legend {
-	font-size: 2em;
-	font-weight: bolder;
+
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: clip !important;
+	font-size: 1.7em;
+	font-weight: bold;
 	color: #133066;
-	margin-bottom: 1em !important;
+	margin-bottom: 0.3em !important;
 }
 
 h4 {
@@ -406,7 +416,7 @@ h5 {
 }
 
 .active, .desplegable:hover {
-	
+
 }
 
 .desplegableContent {
@@ -453,11 +463,37 @@ h5 {
 	float: left;
 }
 
+.min-height-100{
+	min-height: 100px;
+}
+
+.min-height-100{
+	min-height: 100px;
+}
+
+.min-height-150{
+	min-height: 150px;
+}
+
+.min-height-200{
+	min-height: 200px;
+}
+
+.min-height-250{
+	height: 250px !important;
+}
+
+.min-height-300{
+	min-height: 300px;
+}
+
 .toRight {
 	float: right;
 }
 
-
+.css-uncheck{
+	color: rgba(200, 200, 200, 0.6)!important;
+}
 .disabled {
 	color: #fff !important;
 	background-color: #DCDCDC !important;
@@ -466,7 +502,7 @@ h5 {
 
 /* Carrusel de fotos */
 .carrusel{
-	background-color: #1a282f;
+	background-color: inherit!important;
 }
 
 
@@ -605,10 +641,9 @@ to {
 	display: block;
 	border: 1px solid #ccc;
 	min-width: 100%;
-	height: 40px;
 	min-height: 40px;
 	max-width: 100%;
-	max-height: 250px;
+	max-height: 300px;
 	resize: vertical;
 	border-radius: 3px;
 }
@@ -644,7 +679,7 @@ to {
 
 /* Drag and Drop */
 #dropbox {
-	
+
 }
 /*  */
 
@@ -680,7 +715,7 @@ to {
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
+    from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
 
@@ -732,7 +767,7 @@ to {
 	cursor: pointer;
     border: none;
 	border-radius: 3px;
-	padding: .25em;	
+	padding: .25em;
     font-size: .75em;
     text-decoration: none;
 }
@@ -754,39 +789,39 @@ to {
     }
 }
 
-.menuButton{	
+.menuButton{
 	width: 89%;
 	margin: 0%;
 	padding-left: 2.5em;
 	background-color: inherit;
 	border: none;
-	text-align: left;		
+	text-align: left;
     display: inline-block;
-	
+
 }
-.menuLink{	
+.menuLink{
 	width: 90%;
 	margin: 0%;
 	background-color: inherit;
 	border: none;
-	text-align: left;		
+	text-align: left;
     display: inline-block;
-	
+
 }
 
-.iMenuButton{	
+.iMenuButton{
 	width: 100%;
 	margin: 0%;
 	background-color: inherit;
 	border: none;
-	text-align: left;	
+	text-align: left;
     display: inline-block;
-	
+
 }
 
 .topMenuElement{
-	height: 100%; 
-	margin: 5px;	
+	height: 100%;
+	margin: 5px;
 }
 
 .hightInterestColor{
@@ -795,10 +830,10 @@ to {
 .mediumInterestColor{
 	background-color: 	rgb(160,250,0,0.65);
 }
-.lowInterestColor{	
+.lowInterestColor{
 	background-color: 	rgb(160,250,0,0.25);
 }
-.undefinedInterestColor{	
+.undefinedInterestColor{
 	background-color: 	rgb(160,250,0,0);
 }
 
@@ -814,6 +849,11 @@ to {
 	margin: 0 -16px;
 }
 
+.col-12-5 {
+	-ms-flex: 12.5%; /* IE10 */
+	flex: 12.5%;
+}
+
 .col-25 {
 	-ms-flex: 25%; /* IE10 */
 	flex: 25%;
@@ -825,9 +865,21 @@ to {
 	flex: 33%;
 }
 
+.col-40 {
+	-ms-flex: 40%; /* IE10 */
+	flex: 40%;
+}
 .col-50 {
 	-ms-flex: 50%; /* IE10 */
 	flex: 50%;
+}
+.col-60 {
+	-ms-flex: 60%; /* IE10 */
+	flex: 60%;
+}
+.col-66 {
+	-ms-flex: 66%; /* IE10 */
+	flex: 66%;
 }
 
 .col-75 {
@@ -840,7 +892,7 @@ to {
 	flex: 100%;
 }
 
-.col-25, .col-33, .col-50, .col-75, .col-100 {
+.col-12-5, .col-25, .col-33, .col-40, .col-50, .col-60, .col-66, .col-75, .col-100 {
 	padding: 0 16px;
 }
 
@@ -865,6 +917,18 @@ input[type=password] {
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
+}
+
+.hideText{
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: clip !important;
+}
+
+label{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
 }
 
 input[type=checkbox] {

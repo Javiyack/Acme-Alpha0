@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import repositories.ChirpRepository;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -31,11 +32,19 @@ public class ChirpService {
     //Create
     public Chirp create() {
         final Chirp result = new Chirp();
+        result.setMoment(new Date());
         return result;
     }
 
     public Chirp save(Chirp chirp) {
-        return chirpRepository.save(chirp);
+        Assert.notNull(chirp, "msg.commit.error");
+        final Actor actor = this.actorService.findByPrincipal();
+        Assert.notNull(actor, "msg.not.logged.block");
+        Assert.isTrue(actor instanceof User, "msg.not.user.block");
+        chirp.setUser((User) actor);
+        if(chirp.getId()==0)
+            chirp = chirpRepository.save(chirp);
+        return chirp;
     }
 
     public Collection<Chirp> findAll() {
@@ -49,7 +58,7 @@ public class ChirpService {
     public Collection<Chirp> findByLoggedUser() {
         final Actor actor = this.actorService.findByPrincipal();
         Assert.notNull(actor, "msg.not.logged.block");
-        Assert.notNull(actor instanceof User, "msg.not.user.block");
+        Assert.isTrue(actor instanceof User, "msg.not.user.block");
         return chirpRepository.findByUser(actor.getId());
     }
     public Collection<Chirp> findByUserId(Integer UserId) {

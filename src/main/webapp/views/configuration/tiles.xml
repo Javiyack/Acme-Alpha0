@@ -12,7 +12,7 @@
 <tiles-definitions>
 
 	<definition name="configuration/edit" extends="master.page">
-		<put-attribute name="title" value="Configuration" />
+		<put-attribute name="title" value="" />
 		<put-attribute name="body" value="/views/configuration/edit.jsp" />
 	</definition>
 

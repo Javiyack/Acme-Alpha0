@@ -45,9 +45,9 @@ public class ChirpUserController extends AbstractController {
         ModelAndView result;
         final Collection<Chirp> chirps;
         chirps = this.chirpService.findByLoggedUser();
-        result = new ModelAndView("chirp/list");
+        result = new ModelAndView("chirp/user/list");
         result.addObject("chirps", chirps);
-        result.addObject("requestUri", "chirp/list.do");
+        result.addObject("requestUri", "chirp/user/list.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
         return result;
     }
@@ -61,7 +61,7 @@ public class ChirpUserController extends AbstractController {
         for (Follow followed: follows) {
             chirps.addAll(chirpService.findByUserId(followed.getFollowed().getId()));
         }
-        result = new ModelAndView("chirp/stream");
+        result = new ModelAndView("chirp/user/stream");
         result.addObject("chirps", chirps);
         result.addObject("requestUri", "chirp/user/stream.do");
         result.addObject("pageSize", (pageSize != null) ? pageSize : 5);
@@ -75,7 +75,7 @@ public class ChirpUserController extends AbstractController {
         try {
             final Chirp chirp = this.chirpService.findOne(routeId);
             Assert.notNull(chirp, "msg.not.found.resource");
-            result = new ModelAndView("chirp/display");
+            result = new ModelAndView("chirp/user/display");
             result.addObject("chirp", chirp);
             result.addObject("display", true);
         } catch (Throwable oops) {
@@ -106,7 +106,7 @@ public class ChirpUserController extends AbstractController {
         try {
             final Chirp chirp = this.chirpService.findOne(chirpId);
             Assert.notNull(chirp, "msg.not.found.resource");
-            result = new ModelAndView("chirp/edit");
+            result = new ModelAndView("chirp/user/edit");
             result.addObject("chirp", chirp);
             result.addObject("display", false);
         } catch (Throwable oops) {
@@ -130,7 +130,7 @@ public class ChirpUserController extends AbstractController {
         else
             try {
                 this.chirpService.save(chirp);
-                result = new ModelAndView("redirect:/chirp/list.do");
+                result = new ModelAndView("redirect:/chirp/user/list.do");
             } catch (final Throwable oops) {
                 if (oops.getCause().getCause() != null
                         && oops.getCause().getCause().getMessage().startsWith("Duplicate"))
@@ -150,9 +150,9 @@ public class ChirpUserController extends AbstractController {
 
     protected ModelAndView createEditModelAndView(final Chirp model, final String message) {
         final ModelAndView result;
-        result = new ModelAndView("chirp/create");
+        result = new ModelAndView("chirp/user/create");
         result.addObject("chirp", model);
-        result.addObject("requestUri", "chirp/create.do");
+        result.addObject("requestUri", "chirp/user/create.do");
         result.addObject("edition", true);
         result.addObject("creation", model.getId() == 0);
         result.addObject("message", message);

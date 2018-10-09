@@ -34,11 +34,18 @@
 	<a style="margin-left: 1em; margin-right: 1em;"
 		href="${requestScope['javax.servlet.forward.request_uri']}<my:replaceParam name='language' value='es' />">es</a>
 	<span class="w3-bar-item w3-right"> <security:authorize
-			access="isAuthenticated()">
-			<a href="customer/displayOwn.do"><img src="${enterpriseLogo}"
-				class="iconoenlace w3-circle w3-border w3-light-grey"
-				style="margin-bottom: 22px;" /></a>
-		</security:authorize> <a href="?language=es"><img src="images/spain.ico"
+			access="isAuthenticated()"> <security:authorize
+			access="hasRole('ADMINISTRATOR')">
+			<a href="configuration/administrator/edit.do"><img src="${enterpriseLogo}"
+															   class="iconoenlace w3-circle w3-border w3-light-grey"
+															   style="margin-bottom: 22px;" /></a>
+	</security:authorize>
+		<security:authorize
+				access="hasAnyRole('USER','INNKEEPER')">
+			<img src="${enterpriseLogo}" class="iconoenlace w3-circle w3-border w3-light-grey"
+				 style="margin-bottom: 22px;" />
+		</security:authorize>
+	</security:authorize> <a href="?language=es"><img src="images/spain.ico"
 			class="iconoenlace" style="margin-bottom: 22px;"
 			title="Cambiar a español" /></a> <a href="?language=en"><img
 			src="images/uk.ico" class="iconoenlace" style="margin-bottom: 22px;"

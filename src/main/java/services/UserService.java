@@ -22,7 +22,7 @@ public class UserService {
     private UserRepository userRepository;
     //Services
     @Autowired
-    private FollowRepository followRepository;
+    private FollowService followService;
     @Autowired
     private ActorService actorService;
 
@@ -51,18 +51,30 @@ public class UserService {
         return userRepository.findAll();
     }
 
-
-    public Collection<User> findFollowers() {
-        return null;
+    public Collection<User> findAllActive() {
+        return userRepository.findAllActive();
     }
+
+
 
     public User findOne(int userId) {
         return userRepository.findOne(userId);
     }
 
+    public Collection<User> findFollowedUsers() {
+        return followService.findFollowedUsers();
+    }
+
     public Collection<User> findFolloweds() {
-        return null;
+        return followService.findFollowerUsers();
     }
 
 
+    public Collection<User> findFollowerUsers() {
+        return followService.findFollowerUsers();
+    }
+
+    public Collection<User> findFollowers() {
+        return followService.findFollowerUsers();
+    }
 }

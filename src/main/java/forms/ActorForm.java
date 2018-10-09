@@ -51,6 +51,7 @@ public class ActorForm {
 		this.setSurname(actor.getSurname());
 		this.setEmail(actor.getEmail());
 		this.setPhone(actor.getPhone());
+		this.setPicture(actor.getPicture());
 		this.setAddress(actor.getAddress());
 		this.setAccount(new AccountForm(actor));
 		this.setAuthority(this.getAccount().getAuthority());

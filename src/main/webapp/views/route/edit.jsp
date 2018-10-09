@@ -38,7 +38,8 @@
     <jstl:set value="route/user/list.do" var="backUrl"/>
 </jstl:if>
 
-<div class="form">
+<div class="form" <jstl:if test='${!readonly}'>id="dropbox" ondragover="return false"
+     ondrop="myDrop(event)"</jstl:if>>
     <form:form action="${requestUri}" modelAttribute="route">
         <form:hidden path="id"/>
         <form:hidden path="version"/>
@@ -56,10 +57,14 @@
                             <acme:textarea code="label.description" path="description" readonly="${readonly}"
                                            css="formTextArea w3-text-black"/>
                             <acme:textarea code="label.pictures" path="pictures"
-                                           readonly="${readonly}" css="formTextArea collection w3-text-black"
+                                           readonly="${readonly}" css="collection w3-text-black"
                                            id="fotosPath"/>
                         </div>
-                        <div class="col-75" <jstl:if test='${!readonly}'>id="dropbox" ondragover="return false" ondrop="myDrop(event)"</jstl:if>>
+                        <div class="col-75" >
+                            <h2>
+                                Gallery
+                            </h2>
+                            <hr>
                             <!-- Carrusel se fotos  -->
                             <div class="carrusel">
                                 <div class="slideshow-container" id="carrusel">
@@ -68,7 +73,8 @@
                                     <jstl:forEach items="${route.pictures}" var="picture">
                                         <jstl:set var="count" scope="application" value="${count + 1}"/>
                                         <div class="mySlides">
-                                            <img src="${picture}" style="width: 100%">
+                                            <a href="${picture}"> <img src="${picture}" class="w3-border w3-card-4 marco iButton"
+                                                 style="width: 100%"></a>
                                         </div>
                                     </jstl:forEach>
                                 </div>
@@ -79,7 +85,7 @@
                                 <jstl:set var="count" scope="application" value="${0}"/>
                                 <jstl:forEach items="${route.pictures}" var="picture">
                                     <jstl:set var="count" scope="application" value="${count + 1}"/>
-                                    <img src="${picture}" class="tableImg" onclick="currentSlide(${count})">
+                                    <img src="${picture}" class="tableImg iButton" onclick="currentSlide(${count})">
                                 </jstl:forEach>
                             </div>
                         </div>
