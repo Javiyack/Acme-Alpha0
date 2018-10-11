@@ -1,4 +1,3 @@
-
 package services;
 
 import domain.*;
@@ -7,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import repositories.HikeRepository;
+import repositories.InnRepository;
 
 import java.util.Collection;
 
@@ -29,7 +29,7 @@ public class InnService {
     // CRUD Methods
 
     // Create
-    public Inn create(Inn inn) {
+    public Inn create() {
         Actor actor =actorService.findByPrincipal();
         Assert.notNull(actor, "msg.not.logged.block");
         Assert.isTrue(actor instanceof InnKeeper, "msg.not.owned.block");
@@ -49,29 +49,16 @@ public class InnService {
         return result;
     }
 
-    public Hike findOne(Integer id) {
-        return hikeRepository.findOne(id);
+    public Inn findOne(Integer id) {
+        return innRepository.findOne(id);
     }
 
-    public Collection<Hike> findAll() {
-        Collection<Hike> hikes =  hikeRepository.findAll();
-        return hikes;
+    public Collection<Inn> findAll() {
+        Collection<Inn> inns =  innRepository.findAll();
+        return inns;
     }
 
-    public Collection<Hike> findByLogedActor() {
-        Actor actor;
-        actor = this.actorService.findByPrincipal();
-        Assert.notNull(actor, "msg.not.logged.block");
-        return hikeRepository.findByUserId((actor.getId()));
-    }
 
-    public Collection<Hike> findByUserId(int id) {
-        return hikeRepository.findByUserId(id);
-    }
-
-    public Collection<Hike> findByKeyWord(String keyWord) {
-        return hikeRepository.findByIndexedKeyWord(keyWord);
-    }
 
 
     public void flush() {
@@ -79,22 +66,15 @@ public class InnService {
 
     }
 
-    public void delete(Hike hike) {
-        hikeRepository.delete(hike);
+    public void delete(Inn inn) {
+        innRepository.delete(inn);
     }
 
-    public void delete(int hikeId) {
-        hikeRepository.delete(hikeId);
+    public void delete(int innId) {
+        innRepository.delete(innId);
     }
-    public void deleteInBatch(Collection<Hike> hikes) {
-        hikeRepository.deleteInBatch(hikes);
+    public void deleteInBatch(Collection<Inn> hikes) {
+        innRepository.deleteInBatch(hikes);
     }
 
-    public Collection<Hike> findByRoute(Route route) {
-        return this.findByRouteId(route.getId());
-    }
-    public Collection<Hike> findByRouteId(Integer routeId) {
-
-        return hikeRepository.findByRouteId(routeId);
-    }
 }

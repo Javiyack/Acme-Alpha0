@@ -11,11 +11,15 @@
 
 <tiles-definitions>
 
-	<definition name="labor/edit" extends="master.page">
+	<definition name="inn/edit" extends="master.page">
 		<put-attribute name="title" value="Edit labor" />
 		<put-attribute name="body" value="/views/labor/edit.jsp" />
-	</definition>	
-	<definition name="labor/list" extends="master.page">
+	</definition>
+	<definition name="inn/display" extends="master.page">
+		<put-attribute name="title" value="Edit labor" />
+		<put-attribute name="body" value="/views/labor/edit.jsp" />
+	</definition>
+	<definition name="inn/list" extends="master.page">
 		<put-attribute name="title" value="Customers List" />
 		<put-attribute name="body" value="/views/labor/list.jsp" />
 	</definition>		

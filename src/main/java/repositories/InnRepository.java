@@ -1,31 +1,11 @@
 package repositories;
 
-import domain.Hike;
+import domain.Inn;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 
 @Repository
-public interface InnRepository extends JpaRepository<Hike, Integer> {
+public interface InnRepository extends JpaRepository<Inn, Integer> {
 
-	@Query("select h from Hike h where h.route.id=?1")
-	Collection<Hike> findByRouteId(Integer routeId);
-
-	@Query("select h from Hike h where h.name like %?1% " +
-			"or h.description like %?1% or h.origin like %?1% or h.destination like %?1% " +
-			"or h.difficulty like %?1%")
-	Collection<Hike> findByKeyWord(String keyWord);
-
-	@Query("select h from Hike h where h.difficulty like %?1%")
-	ollection<Hike>   indByDifficultyKeyWord(String keyWord);
-
-	@Query("select h from Hike h where h.name like %?1% " +
-			"or h.description like %?1% or h.origin like %?1% or h.destination like %?1% ")
-	Collection<Hike> findByIndexedKeyWord(String keyWord);
-
-	@Query("select h from Hike h" +
-			" where h.route.user.id=?1")
-	Collection<Hike> findByUserId(int id);
 }
