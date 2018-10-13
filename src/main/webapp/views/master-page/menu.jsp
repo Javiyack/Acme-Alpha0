@@ -60,18 +60,20 @@
 
         <a href="route/list.do"
            class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-diamond fa-fw"></i>  <spring:message
+                class="fa fa-diamond fa-fw"></i>ï¿½ <spring:message
                 code="label.routes"/>
         </a>
         <security:authorize access="isAnonymous()">
             <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
+                class="fa fa-users fa-fw"></i>ï¿½ <spring:message code="label.users"/> </a>
+            <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
+                class="fa fa-users fa-fw"></i>ï¿½ <spring:message code="label.users"/> </a>
 
         </security:authorize>
 
         <security:authorize access="hasRole('USER')">
         <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
+                    class="fa fa-users fa-fw"></i>ï¿½ <spring:message code="label.users"/> </a>
 
             <a href="route/user/list.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge">
@@ -80,26 +82,26 @@
             </a>
             <a href="chirp/user/list.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-podcast fa-fw"></i>  <spring:message
+                    class="fa fa-podcast fa-fw"></i>ï¿½ <spring:message
                     code="label.chirp"/>
             </a>
             <a href="chirp/user/stream.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-bell-o fa-fw"></i>  <spring:message
+                    class="fa fa-bell-o fa-fw"></i>ï¿½ <spring:message
                     code="label.chirp"/> </a>
         </security:authorize>
         <security:authorize access="hasRole('ADMINISTRATOR')">
             <a href="user/administrator/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-users fa-fw"></i>  <spring:message code="label.users"/> </a>
+                    class="fa fa-users fa-fw"></i>ï¿½ <spring:message code="label.users"/> </a>
             <a href="configuration/administrator/edit.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-cog fa-fw"></i>  Settings </a>
+                    class="fa fa-cog fa-fw"></i>ï¿½ Settings </a>
             <a href="tabooWord/administrator/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-cog fa-fw"></i>  <spring:message
+                    class="fa fa-cog fa-fw"></i>ï¿½ <spring:message
                     code="label.tabooWords"/> </a>
         </security:authorize>
         <security:authorize access="hasRole('INNKEEPER')">
             <a href="/inn/innkeeper/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge">
-                <i class="fa fa-home fa-fw"></i>  <spring:message code="label.inns"/> </a>
+                <i class="fa fa-home fa-fw"></i>ï¿½ <spring:message code="label.inns"/> </a>
         </security:authorize>
         <br>
         <br>
