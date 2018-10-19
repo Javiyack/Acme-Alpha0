@@ -1,26 +1,22 @@
 
 package controllers;
 
-import domain.Constant;
-import domain.Hike;
-import domain.Route;
-import domain.User;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import domain.Constant;
+import domain.Hike;
 import services.ActorService;
 import services.HikeService;
 import services.RouteService;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequestMapping("/hike")
@@ -39,7 +35,8 @@ public class hikeController extends AbstractController {
     public hikeController() {
         super();
     }
-    // Display  -----------------------------------------------------------
+
+    // Display -----------------------------------------------------------
     @RequestMapping(value = "/display", method = RequestMethod.GET)
     public ModelAndView display(@RequestParam final int hikeId) {
         ModelAndView result;
@@ -58,10 +55,7 @@ public class hikeController extends AbstractController {
         return result;
     }
 
-
-
     // Auxiliary methods -----------------------------------------------------
-
 
     protected ModelAndView createEditModelAndView(final Hike model) {
         final ModelAndView result;
@@ -73,7 +67,7 @@ public class hikeController extends AbstractController {
         final ModelAndView result;
         Constant.difficultyLevels[] difficulties = Constant.difficultyLevels.values();
         List<String> difficultyLevels = new ArrayList<>();
-        for (Constant.difficultyLevels level:difficulties) {
+        for (Constant.difficultyLevels level : difficulties) {
             difficultyLevels.add(level.toString());
         }
         result = new ModelAndView("hike/edit");

@@ -46,7 +46,7 @@ public class MessageController extends AbstractController {
 		ModelAndView result;
 		Message message;
 		message = messageService.create();
-		result = this.createEditModelAndView(message);
+		result = this.createEditModelAndView(message, "HotSwap");
 		return result;
 	}
 

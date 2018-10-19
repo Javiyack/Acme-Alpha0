@@ -60,20 +60,18 @@
 
         <a href="route/list.do"
            class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-diamond fa-fw"></i>� <spring:message
+                class="fa fa-diamond fa-fw"></i> <spring:message
                 code="label.routes"/>
         </a>
         <security:authorize access="isAnonymous()">
             <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-users fa-fw"></i>� <spring:message code="label.users"/> </a>
-            <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                class="fa fa-users fa-fw"></i>� <spring:message code="label.users"/> </a>
+                class="fa fa-users fa-fw"></i> <spring:message code="label.users"/> </a>
 
         </security:authorize>
 
         <security:authorize access="hasRole('USER')">
         <a href="user/list.do" class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-users fa-fw"></i>� <spring:message code="label.users"/> </a>
+                    class="fa fa-users fa-fw"></i> <spring:message code="label.users"/> </a>
 
             <a href="route/user/list.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge">
@@ -82,12 +80,12 @@
             </a>
             <a href="chirp/user/list.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-podcast fa-fw"></i>� <spring:message
+                    class="fa fa-podcast fa-fw"></i> <spring:message
                     code="label.chirp"/>
             </a>
             <a href="chirp/user/stream.do"
                class="w3-bar-item w3-button w3-padding w3-xlarge"> <i
-                    class="fa fa-bell-o fa-fw"></i>� <spring:message
+                    class="fa fa-bell-o fa-fw"></i> <spring:message
                     code="label.chirp"/> </a>
         </security:authorize>
         <security:authorize access="hasRole('ADMINISTRATOR')">
